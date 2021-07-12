@@ -10,7 +10,7 @@ pipeline {
 	stages {
 		stage('deploy') {
 			when {
-				branch 'master'
+				branch 'hackathon'
 			}
 			steps {
 				sh 'mvn clean'

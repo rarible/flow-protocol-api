@@ -1,6 +1,6 @@
 package com.rarible.protocol.dto
 
-class NftItemEventTopicProvider {
+class FlowNftItemEventTopicProvider {
 
     companion object {
         const val VERSION = "v1"

@@ -1,4 +1,4 @@
-package com.rarible.protocol.nft.api.subscriber.autoconfigure
+package com.rarible.protocol.flow.nft.api.subscriber.autoconfigure
 
 import com.rarible.ethereum.domain.Blockchain
 import org.springframework.boot.context.properties.ConfigurationProperties
@@ -8,7 +8,7 @@ internal const val PROTOCOL_NFT_SUBSCRIBER = "protocol.nft.subscriber"
 
 @ConfigurationProperties(PROTOCOL_NFT_SUBSCRIBER)
 @ConstructorBinding
-data class NftIndexerEventsSubscriberProperties(
+data class FlowNftIndexerEventsSubscriberProperties(
     val brokerReplicaSet: String,
     val blockchain: Blockchain
 

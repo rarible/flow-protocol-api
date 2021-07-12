@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="AutoImportedSourceRoots">
+    <option name="directories">
+      <list>
+        <option value="$MODULE_DIR$/src/main/java" />
+        <option value="$MODULE_DIR$/src/main/kotlin" />
+        <option value="$MODULE_DIR$/src/test/java" />
+        <option value="$MODULE_DIR$/src/test/kotlin" />
+        <option value="$MODULE_DIR$/target/generated-sources/kapt/compile" />
+        <option value="$MODULE_DIR$/target/generated-sources/openapi/src/main/java" />
+        <option value="$MODULE_DIR$/target/generated-sources/openapi/src/main/kotlin" />
+        <option value="$MODULE_DIR$/target/generated-sources/rarible/src/main/java" />
+        <option value="$MODULE_DIR$/target/generated-sources/rarible/src/main/kotlin" />
+        <option value="src/main/java" />
+        <option value="src/main/kotlin" />
+      </list>
+    </option>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../protocol-model-nft/target/classes" />
+    <output-test url="file://$MODULE_DIR$/../protocol-model-nft/target/test-classes" />
+    <content url="file://$MODULE_DIR$/../protocol-model-nft">
+      <sourceFolder url="file://$MODULE_DIR$/../protocol-model-nft/src/main/kotlin" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../protocol-model-nft/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

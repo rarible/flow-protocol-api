@@ -1,0 +1,25 @@
+openapi: 3.0.3
+info:
+servers:
+paths:
+
+components:
+  schemas:
+
+    Word:
+      type: string
+
+    Binary:
+      type: string
+
+    BigInteger:
+      type: string
+      example: 717802
+
+    BigDecimal:
+      type: string
+      example: 717802.342336
+
+    Address:
+      type: string
+      example: '0x60f80121c31a0d46b5279700f9df786054aa5ee5'

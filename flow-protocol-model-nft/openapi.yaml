@@ -1,0 +1,83 @@
+openapi: 3.0.3
+info:
+paths:
+
+components:
+  schemas:
+
+    FlowNftItem:
+      type: object
+      properties:
+        id:
+          type: string
+        contract:
+          $ref: '#/components/schemas/Address'
+        tokenId:
+          type: integer
+        creator:
+          $ref: '#/components/schemas/Address'
+        owner:
+          $ref: '#/components/schemas/Address'
+        meta:
+          type: string
+        date:
+          type: string
+          format: date-time
+          description: ISO date time
+        listed:
+          type: boolean
+
+    FlowNftItemEvent:
+      required:
+        - eventId
+        - itemId
+      properties:
+        eventId:
+          type: string
+        itemId:
+          type: string
+      discriminator:
+        propertyName: type
+        mapping:
+          UPDATE: "#/components/schemas/FlowNftItemUpdateEvent"
+          DELETE: "#/components/schemas/FlowNftItemDeleteEvent"
+      oneOf:
+        - $ref: "#/components/schemas/FlowNftItemUpdateEvent"
+        - $ref: "#/components/schemas/FlowNftItemDeleteEvent"
+    FlowNftItemUpdateEvent:
+      type: object
+      required:
+        - item
+      properties:
+        type:
+          type: string
+          enum:
+            - UPDATE
+        item:
+          $ref: "#/components/schemas/FlowNftItem"
+    FlowNftItemDeleteEvent:
+      type: object
+      required:
+        - item
+      properties:
+        type:
+          type: string
+          enum:
+            - DELETE
+        item:
+          $ref: "#/components/schemas/FlowNftDeletedItem"
+
+    FlowNftDeletedItem:
+      required:
+        - id
+        - token
+        - tokenId
+      type: object
+      properties:
+        id:
+          type: string
+          description: Item identifier, has format "contract:tokenId"
+        token:
+          "$ref": "#/components/schemas/Address"
+        tokenId:
+          "$ref": "#/components/schemas/BigInteger"

@@ -11,13 +11,13 @@ components:
         id:
           type: string
         contract:
-          $ref: '#/components/schemas/Address'
+          type: string
         tokenId:
           type: integer
         creator:
-          $ref: '#/components/schemas/Address'
+          type: string
         owner:
-          $ref: '#/components/schemas/Address'
+          type: string
         meta:
           type: string
         date:

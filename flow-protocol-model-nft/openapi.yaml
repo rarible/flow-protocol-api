@@ -78,6 +78,6 @@ components:
           type: string
           description: Item identifier, has format "contract:tokenId"
         token:
-          "$ref": "#/components/schemas/Address"
+          type: string
         tokenId:
-          "$ref": "#/components/schemas/BigInteger"
+          type: integer

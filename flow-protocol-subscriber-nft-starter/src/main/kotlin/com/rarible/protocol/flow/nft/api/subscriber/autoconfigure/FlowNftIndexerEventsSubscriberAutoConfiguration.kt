@@ -16,7 +16,6 @@ class FlowNftIndexerEventsSubscriberAutoConfiguration(
     fun flowNftIndexerEventsConsumerFactory(): FlowNftIndexerEventsConsumerFactory {
         return FlowNftIndexerEventsConsumerFactory(
             brokerReplicaSet = propertiesFlow.brokerReplicaSet,
-            blockchain = propertiesFlow.blockchain,
             host = applicationEnvironmentInfo.host,
             environment = applicationEnvironmentInfo.name
         )

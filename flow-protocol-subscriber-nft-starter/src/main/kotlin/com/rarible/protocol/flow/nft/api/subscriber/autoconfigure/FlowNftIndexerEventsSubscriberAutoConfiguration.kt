@@ -13,7 +13,7 @@ class FlowNftIndexerEventsSubscriberAutoConfiguration(
 ) {
     @Bean
     @ConditionalOnMissingBean(FlowNftIndexerEventsConsumerFactory::class)
-    fun nftIndexerEventsConsumerFactory(): FlowNftIndexerEventsConsumerFactory {
+    fun flowNftIndexerEventsConsumerFactory(): FlowNftIndexerEventsConsumerFactory {
         return FlowNftIndexerEventsConsumerFactory(
             brokerReplicaSet = propertiesFlow.brokerReplicaSet,
             blockchain = propertiesFlow.blockchain,

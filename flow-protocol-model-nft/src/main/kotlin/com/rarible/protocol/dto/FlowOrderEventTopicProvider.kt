@@ -1,12 +1,12 @@
 package com.rarible.protocol.dto
 
-class FlowNftItemEventTopicProvider {
+class FlowOrderEventTopicProvider {
 
     companion object {
         const val VERSION = "v1"
 
         fun getTopic(environment: String): String {
-            return "protocol.$environment.flow.indexer.nft.item"
+            return "protocol.$environment.flow.indexer.nft.order"
         }
     }
 }

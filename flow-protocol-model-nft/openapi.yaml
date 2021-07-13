@@ -81,3 +81,60 @@ components:
           type: string
         tokenId:
           type: integer
+
+    FlowOrder:
+      type: object
+      required:
+        - itemId
+        - amount
+        - maker
+        - fill
+        - cancelled
+        - createdAt
+        - lastUpdateAt
+      properties:
+        itemId:
+          type: string
+        maker:
+          type: string
+        taker:
+          type: string
+        fill:
+          $ref: "#/components/schemas/BigInteger"
+        cancelled:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        lastUpdateAt:
+          type: string
+          format: date-time
+        amount:
+          "$ref": "#/components/schemas/BigDecimal"
+        offeredNftId:
+          type: string
+
+    FlowOrderEvent:
+      type: object
+      required:
+        - eventId
+        - orderId
+      properties:
+        eventId:
+          type: string
+        orderId:
+          type: string
+      oneOf:
+        - "$ref": "#/components/schemas/FlowOrderUpdateEvent"
+
+    FlowOrderUpdateEvent:
+      type: object
+      required:
+        - order
+      properties:
+        "@type":
+          type: string
+          enum:
+            - UPDATE
+        order:
+          "$ref": "#/components/schemas/FlowOrder"

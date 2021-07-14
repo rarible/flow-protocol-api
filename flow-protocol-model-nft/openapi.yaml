@@ -138,3 +138,25 @@ components:
             - UPDATE
         order:
           "$ref": "#/components/schemas/FlowOrder"
+
+    FlowItemMetaForm:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        uri:
+          type: string
+
+    FlowItemMeta:
+      type: object
+      properties:
+        itemId:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        uri:
+          type: string

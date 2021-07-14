@@ -1,0 +1,126 @@
+openapi: 3.0.3
+info:
+  title: OpenAPI definition
+  version: v0.1
+
+paths:
+  '/v0.1/items/':
+    get:
+      tags:
+        - flow-nft-item-controller
+      summary: All items.
+      description: ""
+      operationId: getAllItems
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FlowNftItem'
+  '/v0.1/items/byAccount':
+    get:
+      tags:
+        - flow-nft-item-controller
+      summary: All items filtered by address of an owner.
+      description: ""
+      operationId: getItemsByAccount
+      parameters:
+        - name: address
+          in: query
+          description: address of NFT owner
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FlowNftItem'
+  '/v0.1/items/byCreator':
+    get:
+      tags:
+        - flow-nft-item-controller
+      summary: All items filtered by address of a creator.
+      description: ""
+      operationId: getItemsByCreator
+      parameters:
+        - name: address
+          in: query
+          description: address of NFT creator
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FlowNftItem'
+  '/v0.1/items/listed':
+    get:
+      tags:
+        - flow-nft-item-controller
+      summary: Listed items.
+      description: ""
+      operationId: getListedItems
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FlowNftItem'
+  '/v0.1/items/meta/{itemId}':
+    get:
+      tags:
+        - flow-nft-item-controller
+      operationId: getItemMeta
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowItemMeta'
+    post:
+      tags:
+        - flow-nft-item-controller
+      summary: Save item's meta information.
+      description: ""
+      operationId: saveItemsMeta
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/FlowItemMetaForm"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string

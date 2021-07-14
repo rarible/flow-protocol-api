@@ -25,13 +25,13 @@ class FlowNftIndexerApiClientAutoConfiguration(
 
     @Bean
     @ConditionalOnMissingBean(FlowNftIndexerApiServiceUriProvider::class)
-    fun nftIndexerApiServiceUriProvider(): FlowNftIndexerApiServiceUriProvider {
+    fun flowNftIndexerApiServiceUriProvider(): FlowNftIndexerApiServiceUriProvider {
         return SwarmFlowNftIndexerApiServiceUriProvider(applicationEnvironmentInfo.name)
     }
 
     @Bean
     @ConditionalOnMissingBean(FlowNftIndexerApiClientFactory::class)
-    fun nftIndexerApiClientFactory(nftIndexerApiServiceUriProvider: FlowNftIndexerApiServiceUriProvider): FlowNftIndexerApiClientFactory {
+    fun flowNftIndexerApiClientFactory(nftIndexerApiServiceUriProvider: FlowNftIndexerApiServiceUriProvider): FlowNftIndexerApiClientFactory {
         val compositeWebClientCustomizer =
             CompositeWebClientCustomizer(listOf(DefaultProtocolWebClientCustomizer(), webClientCustomizer))
         return FlowNftIndexerApiClientFactory(nftIndexerApiServiceUriProvider, compositeWebClientCustomizer)

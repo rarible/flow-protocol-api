@@ -22,6 +22,112 @@ components:
 
     Address:
       type: object
+#      properties:
+#        value:
+#          type: string
+
+    ApiError:
+      required:
+        - status
+        - code
+        - message
+      type: object
       properties:
-        value:
+        status:
+          type: integer
+          format: int32
+        code:
           type: string
+        message:
+          type: string
+
+    Activity:
+      type: object
+      required:
+        - id
+        - date
+      properties:
+        id:
+          type: string
+        date:
+          type: string
+          format: date-time
+      oneOf:
+        - $ref: "#/components/schemas/FlowNftActivity"
+
+    FlowNftActivity:
+      type: object
+      required:
+        - owner
+        - contract
+        - tokenId
+        - value
+        - transactionHash
+        - blockHash
+        - blockNumber
+        - logIndex
+      properties:
+        owner:
+          $ref: "#/components/schemas/Address"
+        contract:
+          $ref: "#/components/schemas/Address"
+        tokenId:
+          $ref: "#/components/schemas/BigInteger"
+        value:
+          $ref: "#/components/schemas/BigInteger"
+        transactionHash:
+          $ref: "#/components/schemas/Word"
+        blockHash:
+          $ref: "#/components/schemas/Word"
+        blockNumber:
+          type: integer
+          format: int64
+        logIndex:
+          type: integer
+      oneOf:
+        - $ref: "#/components/schemas/Mint"
+        - $ref: "#/components/schemas/Burn"
+        - $ref: "#/components/schemas/Transfer"
+
+    Mint:
+      type: object
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "mint"
+
+    Burn:
+      type: object
+      required:
+        - "@type"
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "burn"
+
+    Transfer:
+      type: object
+      required:
+        - "@type"
+        - from
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "transfer"
+        from:
+          $ref: "#/components/schemas/Address"
+
+    Activities:
+      type: object
+      required:
+        - items
+      properties:
+        continuation:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/Activity"

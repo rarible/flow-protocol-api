@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: Flow Protocol Nft Order API
+  version: v0
+
+paths:
+  "/v0.1/activities/byItem":
+    get:
+      tags:
+        - flow-nft-order-activity-controller
+      operationId: getNftOrderActivitiesByItem
+      parameters:
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - TRANSFER
+                - MINT
+                - BURN
+                - LIST
+                - SELL
+        - name: contract
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: tokenId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Activities"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ApiError"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ApiError"

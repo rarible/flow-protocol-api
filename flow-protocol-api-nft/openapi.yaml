@@ -20,6 +20,26 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/FlowNftItem'
+
+  '/v0.1/items/{itemId}':
+    get:
+      tags:
+        - flow-nft-item-controller
+      summary: All items.
+      description: ""
+      operationId: getItemById
+      parameters:
+        - name: itemId
+          required: true
+          in: path
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowNftItem'
+
   '/v0.1/items/byAccount':
     get:
       tags:

@@ -27,11 +27,13 @@ paths:
         - flow-nft-item-controller
       summary: All items.
       description: ""
-      operationId: getItemById
+      operationId: getNftItemById
       parameters:
         - name: itemId
-          required: true
           in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: OK

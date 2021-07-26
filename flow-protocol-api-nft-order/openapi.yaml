@@ -50,16 +50,16 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/Activities"
+                "$ref": "#/components/schemas/FlowActivities"
         '400':
           description: Bad request
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiError"
+                "$ref": "#/components/schemas/FlowApiError"
         '500':
           description: Internal Server Error
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiError"
+                "$ref": "#/components/schemas/FlowApiError"

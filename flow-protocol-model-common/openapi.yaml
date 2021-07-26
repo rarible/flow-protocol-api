@@ -20,13 +20,11 @@ components:
       type: string
       example: 717802.342336
 
-    Address:
-      type: object
-#      properties:
-#        value:
-#          type: string
+    FlowAddress:
+      type: string
+      example: "0x5c075acc71f2f41c"
 
-    ApiError:
+    FlowApiError:
       required:
         - status
         - code
@@ -41,7 +39,7 @@ components:
         message:
           type: string
 
-    Activity:
+    FlowActivity:
       type: object
       required:
         - id
@@ -58,6 +56,7 @@ components:
     FlowNftActivity:
       type: object
       required:
+        - kind
         - owner
         - contract
         - tokenId
@@ -67,10 +66,16 @@ components:
         - blockNumber
         - logIndex
       properties:
+        kind:
+          type: string
+          enum:
+            - MINT
+            - TRANSFER
+            - BURN
         owner:
-          $ref: "#/components/schemas/Address"
+          $ref: "#/components/schemas/FlowAddress"
         contract:
-          $ref: "#/components/schemas/Address"
+          $ref: "#/components/schemas/FlowAddress"
         tokenId:
           $ref: "#/components/schemas/BigInteger"
         value:
@@ -84,6 +89,12 @@ components:
           format: int64
         logIndex:
           type: integer
+      discriminator:
+          propertyName: kind
+          mapping:
+            MINT: "#/components/schemas/Mint"
+            BURN: "#/components/schemas/Burn"
+            TRANSFER: "#/components/schemas/Transfer"
       oneOf:
         - $ref: "#/components/schemas/Mint"
         - $ref: "#/components/schemas/Burn"
@@ -91,36 +102,38 @@ components:
 
     Mint:
       type: object
+      required:
+        - kind
       properties:
-        "@type":
+        kind:
           type: string
           enum:
-            - "mint"
+            - "MINT"
 
     Burn:
       type: object
       required:
-        - "@type"
+        - kind
       properties:
-        "@type":
+        kind:
           type: string
           enum:
-            - "burn"
+            - "BURN"
 
     Transfer:
       type: object
       required:
-        - "@type"
+        - type
         - from
       properties:
-        "@type":
+        kind:
           type: string
           enum:
-            - "transfer"
+            - "TRANSFER"
         from:
-          $ref: "#/components/schemas/Address"
+          $ref: "#/components/schemas/FlowAddress"
 
-    Activities:
+    FlowActivities:
       type: object
       required:
         - items
@@ -130,4 +143,4 @@ components:
         items:
           type: array
           items:
-            $ref: "#/components/schemas/Activity"
+            $ref: "#/components/schemas/FlowActivity"

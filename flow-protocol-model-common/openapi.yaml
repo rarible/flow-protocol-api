@@ -56,7 +56,7 @@ components:
     FlowNftActivity:
       type: object
       required:
-        - kind
+        - type
         - owner
         - contract
         - tokenId
@@ -66,12 +66,12 @@ components:
         - blockNumber
         - logIndex
       properties:
-        kind:
-          type: string
-          enum:
-            - MINT
-            - TRANSFER
-            - BURN
+        type:
+            type: string
+            enum:
+              - MINT
+              - TRANSFER
+              - BURN
         owner:
           $ref: "#/components/schemas/FlowAddress"
         contract:
@@ -90,7 +90,7 @@ components:
         logIndex:
           type: integer
       discriminator:
-          propertyName: kind
+          propertyName: type
           mapping:
             MINT: "#/components/schemas/Mint"
             BURN: "#/components/schemas/Burn"
@@ -103,19 +103,17 @@ components:
     Mint:
       type: object
       required:
-        - kind
+        - type
       properties:
-        kind:
+        type:
           type: string
           enum:
             - "MINT"
 
     Burn:
       type: object
-      required:
-        - kind
       properties:
-        kind:
+        type:
           type: string
           enum:
             - "BURN"
@@ -123,10 +121,10 @@ components:
     Transfer:
       type: object
       required:
-        - type
         - from
+        - type
       properties:
-        kind:
+        type:
           type: string
           enum:
             - "TRANSFER"

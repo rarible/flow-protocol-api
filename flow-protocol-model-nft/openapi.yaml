@@ -160,3 +160,17 @@ components:
           type: string
         uri:
           type: string
+
+    FlowNftItems:
+      required:
+        - items
+      type: object
+      properties:
+        continuation:
+          type: string
+          description: Continuation token to paginate items search result
+        items:
+          type: array
+          description: List of found items
+          items:
+            "$ref": "#/components/schemas/FlowNftItem"

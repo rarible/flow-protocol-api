@@ -11,6 +11,20 @@ paths:
       summary: All items.
       description: ""
       operationId: getAllItems
+      parameters:
+        - name: continuation
+          in: query
+          description: continuation value from previous response
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: how many items to return
+          required: false
+          schema:
+            type: integer
+            format: int32
       responses:
         '200':
           description: OK
@@ -19,7 +33,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FlowNftItem'
+                  $ref: '#/components/schemas/FlowNftItems'
 
   '/v0.1/items/{itemId}':
     get:
@@ -56,6 +70,19 @@ paths:
           required: true
           schema:
             type: string
+        - name: continuation
+          in: query
+          description: continuation value from previous response
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: how many items to return
+          required: false
+          schema:
+            type: integer
+            format: int32
       responses:
         '200':
           description: OK
@@ -64,7 +91,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FlowNftItem'
+                  $ref: '#/components/schemas/FlowNftItems'
   '/v0.1/items/byCreator':
     get:
       tags:
@@ -79,6 +106,19 @@ paths:
           required: true
           schema:
             type: string
+        - name: continuation
+          in: query
+          description: continuation value from previous response
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: how many items to return
+          required: false
+          schema:
+            type: integer
+            format: int32
       responses:
         '200':
           description: OK
@@ -87,7 +127,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FlowNftItem'
+                  $ref: '#/components/schemas/FlowNftItems'
   '/v0.1/items/listed':
     get:
       tags:

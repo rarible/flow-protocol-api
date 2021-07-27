@@ -24,6 +24,54 @@ components:
       type: string
       example: "0x5c075acc71f2f41c"
 
+    FlowAsset:
+      type: object
+      required:
+        - contract
+        - value
+      properties:
+        contract:
+          $ref: "#/components/schemas/FlowAddress"
+        value:
+          $ref: "#/components/schemas/BigInteger"
+      oneOf:
+        - $ref: "#/components/schemas/FlowAssetNFT"
+        - $ref: "#/components/schemas/FlowAssetFungible"
+
+    FlowAssetNFT:
+      type: object
+      required:
+        - "@type"
+        - tokenId
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "nft"
+        tokenId:
+          $ref: "#/components/schemas/BigInteger"
+
+    FlowAssetFungible:
+      type: object
+      required:
+        - "@type"
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "fungible"
+
+    OrderActivityMatchSide:
+      type: object
+      required:
+        - maker
+        - asset
+      properties:
+        maker:
+          $ref: "#/components/schemas/FlowAddress"
+        asset:
+          $ref: "#/components/schemas/FlowAsset"
+
     FlowApiError:
       required:
         - status
@@ -52,11 +100,11 @@ components:
           format: date-time
       oneOf:
         - $ref: "#/components/schemas/FlowNftActivity"
+        - $ref: "#/components/schemas/FlowNftOrderActivity"
 
     FlowNftActivity:
       type: object
       required:
-        - type
         - owner
         - contract
         - tokenId
@@ -66,12 +114,6 @@ components:
         - blockNumber
         - logIndex
       properties:
-        type:
-            type: string
-            enum:
-              - MINT
-              - TRANSFER
-              - BURN
         owner:
           $ref: "#/components/schemas/FlowAddress"
         contract:
@@ -89,12 +131,6 @@ components:
           format: int64
         logIndex:
           type: integer
-      discriminator:
-          propertyName: type
-          mapping:
-            MINT: "#/components/schemas/Mint"
-            BURN: "#/components/schemas/Burn"
-            TRANSFER: "#/components/schemas/Transfer"
       oneOf:
         - $ref: "#/components/schemas/Mint"
         - $ref: "#/components/schemas/Burn"
@@ -103,33 +139,99 @@ components:
     Mint:
       type: object
       required:
-        - type
+        - "@type"
       properties:
-        type:
+        "@type":
           type: string
           enum:
-            - "MINT"
+            - "mint"
 
     Burn:
       type: object
+      required:
+        - "@type"
       properties:
-        type:
+        "@type":
           type: string
           enum:
-            - "BURN"
+            - "burn"
 
     Transfer:
       type: object
       required:
         - from
-        - type
+        - "@type@"
       properties:
-        type:
+        "@type":
           type: string
           enum:
-            - "TRANSFER"
+            - "transfer"
         from:
           $ref: "#/components/schemas/FlowAddress"
+
+    FlowNftOrderActivity:
+      type: object
+      oneOf:
+        - $ref: "#/components/schemas/FlowNftOrderActivityList"
+        - $ref: "#/components/schemas/FlowNftOrderActivitySell"
+
+
+    FlowNftOrderActivityList:
+      type: object
+      required:
+        - "@type"
+        - hash
+        - maker
+        - make
+        - take
+        - price
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "list"
+        hash:
+          type: string
+        maker:
+          $ref: "#/components/schemas/FlowAddress"
+        make:
+          $ref: "#/components/schemas/FlowAsset"
+        take:
+          $ref: "#/components/schemas/FlowAsset"
+        price:
+          $ref: "#/components/schemas/BigInteger"
+
+    FlowNftOrderActivitySell:
+      type: object
+      required:
+        - "@type"
+        - left
+        - right
+        - price
+        - transactionHash
+        - blockHash
+        - blockNumber
+        - logIndex
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "sell"
+        left:
+          $ref: "#/components/schemas/OrderActivityMatchSide"
+        right:
+          $ref: "#/components/schemas/OrderActivityMatchSide"
+        price:
+          $ref: "#/components/schemas/BigDecimal"
+        transactionHash:
+          type: string
+        blockHash:
+          type: string
+        blockNumber:
+          type: integer
+          format: int64
+        logIndex:
+          type: integer
 
     FlowActivities:
       type: object

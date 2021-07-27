@@ -33,7 +33,7 @@ components:
         contract:
           $ref: "#/components/schemas/FlowAddress"
         value:
-          $ref: "#/components/schemas/BigInteger"
+          $ref: "#/components/schemas/BigDecimal"
       oneOf:
         - $ref: "#/components/schemas/FlowAssetNFT"
         - $ref: "#/components/schemas/FlowAssetFungible"

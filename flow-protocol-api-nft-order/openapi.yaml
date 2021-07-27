@@ -66,7 +66,7 @@ paths:
   "/v0.1/activities/byUser":
     get:
       tags:
-        - nft-order-activity-controller
+        - flow-nft-order-activity-controller
       operationId: getNftOrderActivitiesByUser
       parameters:
         - name: type

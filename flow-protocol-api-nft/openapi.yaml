@@ -31,9 +31,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/FlowNftItems'
+                $ref: '#/components/schemas/FlowNftItems'
 
   '/v0.1/items/{itemId}':
     get:
@@ -89,9 +87,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/FlowNftItems'
+                $ref: '#/components/schemas/FlowNftItems'
   '/v0.1/items/byCreator':
     get:
       tags:
@@ -125,9 +121,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/FlowNftItems'
+                $ref: '#/components/schemas/FlowNftItems'
   '/v0.1/items/listed':
     get:
       tags:

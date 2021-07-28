@@ -63,3 +63,61 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/FlowApiError"
+  "/v0.1/activities/byUser":
+    get:
+      tags:
+        - flow-nft-order-activity-controller
+      operationId: getNftOrderActivitiesByUser
+      parameters:
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - TRANSFER_FROM
+                - TRANSFER_TO
+                - MINT
+                - BURN
+                - LIST
+                - BUY
+                - SELL
+        - name: user
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/FlowAddress"
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowActivities"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"

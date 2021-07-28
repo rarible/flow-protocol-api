@@ -20,8 +20,227 @@ components:
       type: string
       example: 717802.342336
 
-    Address:
+    FlowAddress:
+      type: string
+      example: "0x5c075acc71f2f41c"
+
+    FlowAsset:
+      type: object
+      required:
+        - contract
+        - value
+      properties:
+        contract:
+          $ref: "#/components/schemas/FlowAddress"
+        value:
+          $ref: "#/components/schemas/BigDecimal"
+      oneOf:
+        - $ref: "#/components/schemas/FlowAssetNFT"
+        - $ref: "#/components/schemas/FlowAssetFungible"
+
+    FlowAssetNFT:
+      type: object
+      required:
+        - "@type"
+        - tokenId
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "nft"
+        tokenId:
+          $ref: "#/components/schemas/BigInteger"
+
+    FlowAssetFungible:
+      type: object
+      required:
+        - "@type"
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "fungible"
+
+    OrderActivityMatchSide:
+      type: object
+      required:
+        - maker
+        - asset
+      properties:
+        maker:
+          $ref: "#/components/schemas/FlowAddress"
+        asset:
+          $ref: "#/components/schemas/FlowAsset"
+
+    FlowApiError:
+      required:
+        - status
+        - code
+        - message
       type: object
       properties:
-        value:
+        status:
+          type: integer
+          format: int32
+        code:
           type: string
+        message:
+          type: string
+
+    FlowActivity:
+      type: object
+      required:
+        - id
+        - date
+      properties:
+        id:
+          type: string
+        date:
+          type: string
+          format: date-time
+      oneOf:
+        - $ref: "#/components/schemas/FlowNftActivity"
+        - $ref: "#/components/schemas/FlowNftOrderActivity"
+
+    FlowNftActivity:
+      type: object
+      required:
+        - owner
+        - contract
+        - tokenId
+        - value
+        - transactionHash
+        - blockHash
+        - blockNumber
+        - logIndex
+      properties:
+        owner:
+          $ref: "#/components/schemas/FlowAddress"
+        contract:
+          $ref: "#/components/schemas/FlowAddress"
+        tokenId:
+          $ref: "#/components/schemas/BigInteger"
+        value:
+          $ref: "#/components/schemas/BigInteger"
+        transactionHash:
+          $ref: "#/components/schemas/Word"
+        blockHash:
+          $ref: "#/components/schemas/Word"
+        blockNumber:
+          type: integer
+          format: int64
+        logIndex:
+          type: integer
+      oneOf:
+        - $ref: "#/components/schemas/Mint"
+        - $ref: "#/components/schemas/Burn"
+        - $ref: "#/components/schemas/Transfer"
+
+    Mint:
+      type: object
+      required:
+        - "@type"
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "mint"
+
+    Burn:
+      type: object
+      required:
+        - "@type"
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "burn"
+
+    Transfer:
+      type: object
+      required:
+        - from
+        - "@type"
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "transfer"
+        from:
+          $ref: "#/components/schemas/FlowAddress"
+
+    FlowNftOrderActivity:
+      type: object
+      oneOf:
+        - $ref: "#/components/schemas/FlowNftOrderActivityList"
+        - $ref: "#/components/schemas/FlowNftOrderActivitySell"
+
+
+    FlowNftOrderActivityList:
+      type: object
+      required:
+        - "@type"
+        - hash
+        - maker
+        - make
+        - take
+        - price
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "list"
+        hash:
+          type: string
+        maker:
+          $ref: "#/components/schemas/FlowAddress"
+        make:
+          $ref: "#/components/schemas/FlowAsset"
+        take:
+          $ref: "#/components/schemas/FlowAsset"
+        price:
+          $ref: "#/components/schemas/BigInteger"
+
+    FlowNftOrderActivitySell:
+      type: object
+      required:
+        - "@type"
+        - left
+        - right
+        - price
+        - transactionHash
+        - blockHash
+        - blockNumber
+        - logIndex
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "sell"
+        left:
+          $ref: "#/components/schemas/OrderActivityMatchSide"
+        right:
+          $ref: "#/components/schemas/OrderActivityMatchSide"
+        price:
+          $ref: "#/components/schemas/BigDecimal"
+        transactionHash:
+          type: string
+        blockHash:
+          type: string
+        blockNumber:
+          type: integer
+          format: int64
+        logIndex:
+          type: integer
+
+    FlowActivities:
+      type: object
+      required:
+        - items
+      properties:
+        continuation:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/FlowActivity"

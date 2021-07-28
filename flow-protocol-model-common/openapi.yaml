@@ -160,7 +160,7 @@ components:
       type: object
       required:
         - from
-        - "@type@"
+        - "@type"
       properties:
         "@type":
           type: string

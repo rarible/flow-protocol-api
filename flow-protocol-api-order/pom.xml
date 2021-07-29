@@ -10,6 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>flow-protocol-api-order</artifactId>
+    <packaging>jar</packaging>
+    <version>${project.parent.version}</version>
 
     <dependencies>
         <dependency>
@@ -19,6 +21,10 @@
         <dependency>
             <groupId>com.rarible.protocol</groupId>
             <artifactId>flow-protocol-model-nft</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.rarible.protocol</groupId>
+            <artifactId>flow-protocol-model-order</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -35,6 +41,10 @@
                     <dependencies>
                         <dependency>
                             <name>flow-protocol-model-nft</name>
+                            <packageName>${generator.package}</packageName>
+                        </dependency>
+                        <dependency>
+                            <name>flow-protocol-model-order</name>
                             <packageName>${generator.package}</packageName>
                         </dependency>
                     </dependencies>

@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  title: OpenAPI definition
+  version: v0.1
+paths:
+components:
+  schemas:
+
+    FlowOrder:
+      type: object
+      required:
+        - itemId
+        - amount
+        - amountUsd
+        - maker
+        - make
+        - data
+        - fill
+        - cancelled
+        - createdAt
+        - lastUpdateAt
+      properties:
+        itemId:
+          type: string
+        maker:
+          type: string
+        taker:
+          type: string
+        make:
+          $ref: "#/components/schemas/FlowAsset"
+        take:
+          $ref: "#/components/schemas/FlowAsset"
+        data:
+          $ref: "#/components/schemas/FlowOrderData"
+        fill:
+          $ref: "#/components/schemas/BigInteger"
+        cancelled:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        lastUpdateAt:
+          type: string
+          format: date-time
+        amount:
+          $ref: "#/components/schemas/BigDecimal"
+        offeredNftId:
+          type: string
+        amountUsd:
+          $ref: "#/components/schemas/BigDecimal"
+
+    FlowOrderEvent:
+      type: object
+      required:
+        - eventId
+        - orderId
+      properties:
+        eventId:
+          type: string
+        orderId:
+          type: string
+      oneOf:
+        - $ref: "#/components/schemas/FlowOrderUpdateEvent"
+
+    FlowOrderUpdateEvent:
+      type: object
+      required:
+        - order
+      properties:
+        "@type":
+          type: string
+          enum:
+            - UPDATE
+        order:
+          $ref: "#/components/schemas/FlowOrder"
+
+    FlowOrderData:
+      type: object
+      required:
+        - payouts
+        - originalFees
+      properties:
+        payouts:
+          type: array
+          items:
+            $ref: "#/components/schemas/PayInfo"
+        originalFees:
+          type: array
+          items: 
+            $ref: "#/components/schemas/PayInfo"

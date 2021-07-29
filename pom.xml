@@ -108,6 +108,11 @@
             </dependency>
             <dependency>
                 <groupId>com.rarible.protocol</groupId>
+                <artifactId>flow-protocol-model-order</artifactId>
+                <version>${version.flow.protocol.api}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.rarible.protocol</groupId>
                 <artifactId>flow-protocol-client-nft</artifactId>
                 <version>${version.flow.protocol.api}</version>
             </dependency>
@@ -279,13 +284,14 @@
 
     <modules>
         <module>flow-protocol-model-common</module>
+        <module>flow-protocol-model-order</module>
         <module>flow-protocol-model-nft</module>
         <module>flow-protocol-api-nft</module>
+        <module>flow-protocol-api-order</module>
+        <module>flow-protocol-api-nft-order</module>
         <module>flow-protocol-client-nft</module>
         <module>flow-protocol-client-nft-starter</module>
         <module>flow-protocol-subscriber-nft</module>
         <module>flow-protocol-subscriber-nft-starter</module>
-        <module>flow-protocol-api-nft-order</module>
-        <module>flow-protocol-api-order</module>
     </modules>
 </project>

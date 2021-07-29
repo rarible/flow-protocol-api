@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
-  title: Flow Protocol Nft Order API
-  version: v0
+  title: OpenAPI definition
+  version: v0.1
 
 paths:
   "/v0.1/activities/byItem":

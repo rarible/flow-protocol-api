@@ -244,3 +244,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/FlowActivity"
+
+    PayInfo:
+      type: object
+      required:
+        - account
+        - value
+      properties:
+        account:
+          $ref: "#/components/schemas/FlowAddress"
+        value:
+          $ref: "#/components/schemas/BigDecimal"

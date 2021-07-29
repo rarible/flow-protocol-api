@@ -286,5 +286,6 @@
         <module>flow-protocol-subscriber-nft</module>
         <module>flow-protocol-subscriber-nft-starter</module>
         <module>flow-protocol-api-nft-order</module>
+        <module>flow-protocol-api-order</module>
     </modules>
 </project>

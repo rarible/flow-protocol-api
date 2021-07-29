@@ -175,6 +175,25 @@ components:
           items:
             "$ref": "#/components/schemas/FlowNftItem"
 
+    FlowOwnershipEvent:
+      required:
+        - eventId
+        - ownershipId
+      properties:
+        eventId:
+          type: string
+        ownershipId:
+          type: string
+      discriminator:
+        propertyName: type
+        mapping:
+          UPDATE: "#/components/schemas/FlowNftOwnershipUpdateEvent"
+          DELETE: "#/components/schemas/FlowNftOwnershipDeleteEvent"
+      oneOf:
+        - $ref: "#/components/schemas/FlowNftOwnershipUpdateEvent"
+        - $ref: "#/components/schemas/FlowNftOwnershipDeleteEvent"
+
+
     FlowNftOwnershipUpdateEvent:
       type: object
       required:

@@ -174,3 +174,47 @@ components:
           description: List of found items
           items:
             "$ref": "#/components/schemas/FlowNftItem"
+
+    FlowNftOwnershipUpdateEvent:
+      type: object
+      required:
+        - ownership
+      properties:
+        type:
+          type: string
+          enum:
+            - UPDATE
+        ownership:
+          $ref: "#/components/schemas/FlowNftOwnership"
+
+    FlowNftOwnershipDeleteEvent:
+      type: object
+      required:
+        - ownership
+      properties:
+        type:
+          type: string
+          enum:
+            - DELETE
+        ownership:
+          $ref: "#/components/schemas/FlowNftOwnership"
+
+    FlowNftOwnership:
+      required:
+        - token
+        - tokenId
+        - owner
+      type: object
+      properties:
+        id:
+          type: string
+          description: Ownership identifier, has format "token:tokenId:owner"
+        token:
+          type: string
+          description: Token contract address
+        tokenId:
+          type: string
+          description: Token ID
+        owner:
+          type: string
+          description: Owner's account address

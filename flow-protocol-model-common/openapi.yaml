@@ -254,5 +254,4 @@ components:
         account:
           $ref: "#/components/schemas/FlowAddress"
         value:
-          type: integer
-          format: int64
+          $ref: "#/components/schemas/BigDecimal"

@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: OpenAPI definition
+  title: flow-protocol-api-nft-order
   version: v0.1
 
 paths:
@@ -90,7 +90,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: "#/components/schemas/FlowAddress"
+              "$ref": "#/components/schemas/FlowAddress"
         - name: continuation
           in: query
           required: false

@@ -38,6 +38,12 @@
                 <groupId>com.rarible.protocol</groupId>
                 <artifactId>model-generator-maven-plugin</artifactId>
                 <configuration>
+                    <generators>
+                        <generator>
+                            <lang>${generator.kotlin}</lang>
+                            <packageName>${generator.package}</packageName>
+                        </generator>
+                    </generators>
                     <dependencies>
                         <dependency>
                             <name>flow-protocol-model-nft</name>

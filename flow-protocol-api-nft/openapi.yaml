@@ -180,3 +180,30 @@ paths:
             application/json:
               schema:
                 type: string
+
+  "/v0.1/collections/{collection}":
+    get:
+      tags:
+        - flow-nft-collection-controller
+      description: Returns Collection by ID
+      operationId: getNftCollectionById
+      parameters:
+        - name: collection
+          in: path
+          required: true
+          schema:
+            type: string
+            example:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowNftCollection"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"

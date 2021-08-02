@@ -28,6 +28,8 @@ components:
           description: ISO date time
         listed:
           type: boolean
+        collection:
+          type: string
 
     FlowNftItemEvent:
       required:

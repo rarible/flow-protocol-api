@@ -299,3 +299,44 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/ownerships/byItem":
+    get:
+      tags:
+        - flow-nft-ownership-controller
+      operationId: getNftOwnershipsByItem
+      parameters:
+        - name: contract
+          in: query
+          required: true
+          schema:
+            "$ref": "#/components/schemas/FlowAddress"
+        - name: tokenId
+          in: query
+          required: true
+          schema:
+            "$ref": "#/components/schemas/BigInteger"
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowNftOwnerships"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"

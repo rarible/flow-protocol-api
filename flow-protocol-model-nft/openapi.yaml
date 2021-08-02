@@ -28,6 +28,8 @@ components:
           description: ISO date time
         listed:
           type: boolean
+        collection:
+          type: string
 
     FlowNftItemEvent:
       required:
@@ -183,3 +185,24 @@ components:
         owner:
           type: string
           description: Owner's account address
+
+    FlowNftCollection:
+      type: object
+      required:
+        - id
+        - owner
+        - name
+        - symbol
+      properties:
+        id:
+          type: string
+          example: "A.e4e5f90bf7e2a25f.NFTProvider.NFT"
+          description: ID of collection (full resource name)
+        owner:
+          $ref: "#/components/schemas/FlowAddress"
+        name:
+          type: string
+          description: Colelction name
+        symbol:
+          type: string
+          description: Collection short name

@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: OpenAPI definition
+  title: flow-protocol-api-nft
   version: v0.1
 
 paths:

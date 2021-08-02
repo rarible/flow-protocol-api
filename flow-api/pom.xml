@@ -9,23 +9,40 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>flow-protocol-api-nft-order</artifactId>
+    <artifactId>flow-api</artifactId>
     <packaging>jar</packaging>
     <version>${project.parent.version}</version>
 
     <dependencies>
         <dependency>
-            <groupId>com.rarible.core</groupId>
-            <artifactId>rarible-core-logging</artifactId>
+            <groupId>com.rarible.protocol</groupId>
+            <artifactId>flow-protocol-model-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.rarible.protocol</groupId>
+            <artifactId>flow-protocol-model-order</artifactId>
         </dependency>
         <dependency>
             <groupId>com.rarible.protocol</groupId>
             <artifactId>flow-protocol-model-nft</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.rarible.protocol</groupId>
+            <artifactId>flow-protocol-api-nft</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.rarible.protocol</groupId>
+            <artifactId>flow-protocol-api-order</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.rarible.protocol</groupId>
+            <artifactId>flow-protocol-api-nft-order</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -42,7 +59,27 @@
                     </generators>
                     <dependencies>
                         <dependency>
+                            <name>flow-protocol-model-common</name>
+                            <packageName>${generator.package}</packageName>
+                        </dependency>
+                        <dependency>
+                            <name>flow-protocol-model-order</name>
+                            <packageName>${generator.package}</packageName>
+                        </dependency>
+                        <dependency>
                             <name>flow-protocol-model-nft</name>
+                            <packageName>${generator.package}</packageName>
+                        </dependency>
+                        <dependency>
+                            <name>flow-protocol-api-nft</name>
+                            <packageName>${generator.package}</packageName>
+                        </dependency>
+                        <dependency>
+                            <name>flow-protocol-api-nft-order</name>
+                            <packageName>${generator.package}</packageName>
+                        </dependency>
+                        <dependency>
+                            <name>flow-protocol-api-order</name>
                             <packageName>${generator.package}</packageName>
                         </dependency>
                     </dependencies>
@@ -63,7 +100,7 @@
                             <generatorName>rarible-server</generatorName>
                             <generateModels>false</generateModels>
                             <generateApiTests>false</generateApiTests>
-                            <generateApis>true</generateApis>
+                            <generateApis>false</generateApis>
                             <generateModelTests>false</generateModelTests>
                         </configuration>
                     </execution>
@@ -71,4 +108,6 @@
             </plugin>
         </plugins>
     </build>
+
+
 </project>

@@ -1,7 +1,9 @@
 openapi: 3.0.3
 info:
-paths:
+  title: flow-protocol-model-nft
+  version: v0.1
 
+paths:
 components:
   schemas:
 

@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: OpenAPI definition
+  title: flow-protocol-api-nft-order
   version: v0.1
 
 paths:
@@ -158,6 +158,48 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/FlowActivities"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/items/byOwner":
+    get:
+      tags:
+        - flow-nft-order-item-controller
+      operationId: getNftOrderItemsByOwner
+      parameters:
+        - name: owner
+          in: query
+          required: true
+          schema:
+            "$ref": "#/components/schemas/FlowAddress"
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowNftItems"
         '400':
           description: Bad request
           content:

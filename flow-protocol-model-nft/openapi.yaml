@@ -206,3 +206,19 @@ components:
         symbol:
           type: string
           description: Collection short name
+
+    FlowNftOwnerships:
+      type: object
+      required:
+        - total
+        - ownerships
+      properties:
+        total:
+          type: integer
+          format: int32
+        continuation:
+          type: string
+        ownerships:
+          type: array
+          items:
+            $ref: "#/components/schemas/FlowNftOwnership"

@@ -291,3 +291,59 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/order/activities/byCollection":
+    get:
+      tags:
+        - flow-nft-order-activity-controller
+      operationId: getNftOrderActivitiesByCollection
+      parameters:
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - TRANSFER
+                - MINT
+                - BURN
+                - LIST
+                - SELL
+        - name: collection
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "A.e4e5f90bf7e2a25f.NFTProvider.NFT"
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowActivities"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"

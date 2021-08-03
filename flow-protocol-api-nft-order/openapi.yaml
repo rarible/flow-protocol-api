@@ -291,7 +291,8 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/FlowApiError"
-  "/v0.1/activities/byCollection":
+
+  "/v0.1/order/activities/byCollection":
     get:
       tags:
         - flow-nft-order-activity-controller

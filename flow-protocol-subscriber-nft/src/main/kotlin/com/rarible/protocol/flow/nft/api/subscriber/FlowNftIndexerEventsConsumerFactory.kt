@@ -2,10 +2,7 @@ package com.rarible.protocol.flow.nft.api.subscriber
 
 import com.rarible.core.kafka.RaribleKafkaConsumer
 import com.rarible.core.kafka.json.JsonDeserializer
-import com.rarible.protocol.dto.FlowNftItemEventDto
-import com.rarible.protocol.dto.FlowNftItemEventTopicProvider
-import com.rarible.protocol.dto.FlowOrderDto
-import com.rarible.protocol.dto.FlowOrderEventTopicProvider
+import com.rarible.protocol.dto.*
 import java.util.*
 
 class FlowNftIndexerEventsConsumerFactory(
@@ -23,6 +20,17 @@ class FlowNftIndexerEventsConsumerFactory(
             valueClass = FlowNftItemEventDto::class.java,
             consumerGroup = consumerGroup,
             defaultTopic = FlowNftItemEventTopicProvider.getTopic(environment),
+            bootstrapServers = brokerReplicaSet
+        )
+    }
+
+    fun createOwnershipEventsConsumer(consumerGroup: String): RaribleKafkaConsumer<FlowOwnershipEventDto> {
+        return RaribleKafkaConsumer(
+            clientId = "$clientIdPrefix.flow-nft-indexer-item-events-consumer",
+            valueDeserializerClass = JsonDeserializer::class.java,
+            valueClass = FlowOwnershipEventDto::class.java,
+            consumerGroup = consumerGroup,
+            defaultTopic = FlowNftOwnershipEventTopicProvider.getTopic(environment),
             bootstrapServers = brokerReplicaSet
         )
     }

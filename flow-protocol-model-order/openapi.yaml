@@ -10,6 +10,7 @@ components:
       type: object
       required:
         - itemId
+        - collection
         - amount
         - amountUsd
         - maker
@@ -21,6 +22,8 @@ components:
         - lastUpdateAt
       properties:
         itemId:
+          type: string
+        collection:
           type: string
         maker:
           type: string

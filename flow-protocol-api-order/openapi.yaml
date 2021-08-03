@@ -1,0 +1,30 @@
+openapi: 3.0.3
+info:
+  title: flow-protocol-api-order
+  version: v0.1
+
+paths:
+  "/v0.1/orders/{orderId}":
+    get:
+      tags:
+        - flow-order-controller
+      operationId: getOrderByOrderId
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowOrder"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"

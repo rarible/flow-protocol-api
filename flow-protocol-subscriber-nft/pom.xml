@@ -10,7 +10,6 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>flow-protocol-subscriber-nft</artifactId>
-    <version>${project.parent.version}</version>
 
     <build>
         <resources>
@@ -28,6 +27,10 @@
             <artifactId>flow-protocol-model-nft</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.rarible.protocol</groupId>
+            <artifactId>flow-protocol-model-order</artifactId>
+        </dependency>
         <!-- =============== Rarible-core ================ -->
         <dependency>
             <groupId>com.rarible.core</groupId>

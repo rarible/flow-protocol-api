@@ -1,8 +1,8 @@
 openapi: 3.0.3
 info:
-servers:
+  title: flow-protocol-model-common
+  version: v0.1
 paths:
-
 components:
   schemas:
 
@@ -244,3 +244,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/FlowActivity"
+
+    PayInfo:
+      type: object
+      required:
+        - account
+        - value
+      properties:
+        account:
+          $ref: "#/components/schemas/FlowAddress"
+        value:
+          $ref: "#/components/schemas/BigDecimal"

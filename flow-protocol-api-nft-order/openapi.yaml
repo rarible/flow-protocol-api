@@ -1,10 +1,10 @@
 openapi: 3.0.3
 info:
-  title: Flow Protocol Nft Order API
-  version: v0
+  title: flow-protocol-api-nft-order
+  version: v0.1
 
 paths:
-  "/v0.1/activities/byItem":
+  "/v0.1/order/activities/byItem":
     get:
       tags:
         - flow-nft-order-activity-controller
@@ -63,7 +63,7 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/FlowApiError"
-  "/v0.1/activities/byUser":
+  "/v0.1/order/activities/byUser":
     get:
       tags:
         - flow-nft-order-activity-controller
@@ -109,6 +109,176 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/FlowActivities"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+  "/v0.1/order/activities/all":
+    get:
+      tags:
+        - flow-nft-order-activity-controller
+      operationId: getNftOrderAllActivities
+      parameters:
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - TRANSFER
+                - MINT
+                - BURN
+                - LIST
+                - SELL
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowActivities"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/order/items/byOwner":
+    get:
+      tags:
+        - flow-nft-order-item-controller
+      operationId: getNftOrderItemsByOwner
+      parameters:
+        - name: owner
+          in: query
+          required: true
+          schema:
+            "$ref": "#/components/schemas/FlowAddress"
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowNftItems"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/order/items/all":
+    get:
+      tags:
+        - flow-nft-order-item-controller
+      operationId: getNftOrderAllItems
+      parameters:
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowNftItems"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/order/items/byCollection":
+    get:
+      tags:
+        - flow-nft-order-item-controller
+      operationId: getNftOrderItemsByCollection
+      parameters:
+        - name: collection
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowNftItems"
         '400':
           description: Bad request
           content:

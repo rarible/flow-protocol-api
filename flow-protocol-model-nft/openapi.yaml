@@ -1,7 +1,9 @@
 openapi: 3.0.3
 info:
-paths:
+  title: flow-protocol-model-nft
+  version: v0.1
 
+paths:
 components:
   schemas:
 
@@ -26,6 +28,8 @@ components:
           description: ISO date time
         listed:
           type: boolean
+        collection:
+          type: string
 
     FlowNftItemEvent:
       required:
@@ -44,6 +48,7 @@ components:
       oneOf:
         - $ref: "#/components/schemas/FlowNftItemUpdateEvent"
         - $ref: "#/components/schemas/FlowNftItemDeleteEvent"
+
     FlowNftItemUpdateEvent:
       type: object
       required:
@@ -82,63 +87,6 @@ components:
         tokenId:
           type: integer
 
-    FlowOrder:
-      type: object
-      required:
-        - itemId
-        - amount
-        - maker
-        - fill
-        - cancelled
-        - createdAt
-        - lastUpdateAt
-      properties:
-        itemId:
-          type: string
-        maker:
-          type: string
-        taker:
-          type: string
-        fill:
-          $ref: "#/components/schemas/BigInteger"
-        cancelled:
-          type: boolean
-        createdAt:
-          type: string
-          format: date-time
-        lastUpdateAt:
-          type: string
-          format: date-time
-        amount:
-          "$ref": "#/components/schemas/BigDecimal"
-        offeredNftId:
-          type: string
-
-    FlowOrderEvent:
-      type: object
-      required:
-        - eventId
-        - orderId
-      properties:
-        eventId:
-          type: string
-        orderId:
-          type: string
-      oneOf:
-        - "$ref": "#/components/schemas/FlowOrderUpdateEvent"
-
-    FlowOrderUpdateEvent:
-      type: object
-      required:
-        - order
-      properties:
-        "@type":
-          type: string
-          enum:
-            - UPDATE
-        order:
-          "$ref": "#/components/schemas/FlowOrder"
-
     FlowItemMetaForm:
       type: object
       properties:
@@ -174,3 +122,104 @@ components:
           description: List of found items
           items:
             "$ref": "#/components/schemas/FlowNftItem"
+
+    FlowOwnershipEvent:
+      required:
+        - eventId
+        - ownershipId
+      properties:
+        eventId:
+          type: string
+        ownershipId:
+          type: string
+      discriminator:
+        propertyName: type
+        mapping:
+          UPDATE: "#/components/schemas/FlowNftOwnershipUpdateEvent"
+          DELETE: "#/components/schemas/FlowNftOwnershipDeleteEvent"
+      oneOf:
+        - $ref: "#/components/schemas/FlowNftOwnershipUpdateEvent"
+        - $ref: "#/components/schemas/FlowNftOwnershipDeleteEvent"
+
+
+    FlowNftOwnershipUpdateEvent:
+      type: object
+      required:
+        - ownership
+      properties:
+        type:
+          type: string
+          enum:
+            - UPDATE
+        ownership:
+          $ref: "#/components/schemas/FlowNftOwnership"
+
+    FlowNftOwnershipDeleteEvent:
+      type: object
+      required:
+        - ownership
+      properties:
+        type:
+          type: string
+          enum:
+            - DELETE
+        ownership:
+          $ref: "#/components/schemas/FlowNftOwnership"
+
+    FlowNftOwnership:
+      required:
+        - token
+        - tokenId
+        - owner
+      type: object
+      properties:
+        id:
+          type: string
+          description: Ownership identifier, has format "token:tokenId:owner"
+        token:
+          type: string
+          description: Token contract address
+        tokenId:
+          type: string
+          description: Token ID
+        owner:
+          type: string
+          description: Owner's account address
+
+    FlowNftCollection:
+      type: object
+      required:
+        - id
+        - owner
+        - name
+        - symbol
+      properties:
+        id:
+          type: string
+          example: "A.e4e5f90bf7e2a25f.NFTProvider.NFT"
+          description: ID of collection (full resource name)
+        owner:
+          $ref: "#/components/schemas/FlowAddress"
+        name:
+          type: string
+          description: Colelction name
+        symbol:
+          type: string
+          description: Collection short name
+
+    FlowNftOwnerships:
+      type: object
+      required:
+        - total
+        - ownerships
+      properties:
+        total:
+          type: integer
+          format: int32
+        continuation:
+          type: string
+        ownerships:
+          type: array
+          items:
+            $ref: "#/components/schemas/FlowNftOwnership"
+

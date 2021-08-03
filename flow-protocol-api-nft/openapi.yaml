@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: OpenAPI definition
+  title: flow-protocol-api-nft
   version: v0.1
 
 paths:
@@ -180,3 +180,163 @@ paths:
             application/json:
               schema:
                 type: string
+
+  "/v0.1/collections/{collection}":
+    get:
+      tags:
+        - flow-nft-collection-controller
+      description: Returns Collection by ID
+      operationId: getNftCollectionById
+      parameters:
+        - name: collection
+          in: path
+          required: true
+          schema:
+            type: string
+            example:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowNftCollection"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/items/byCollection":
+    get:
+      tags:
+        - flow-nft-item-controller
+      operationId: getNftItemsByCollection
+      parameters:
+        - name: collection
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowNftItems"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/ownerships/{ownershipId}":
+    get:
+      tags:
+        - flow-nft-ownership-controller
+      operationId: getNftOwnershipById
+      parameters:
+        - name: ownershipId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowNftOwnership"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/ownerships/all":
+    get:
+      tags:
+        - flow-nft-ownership-controller
+      operationId: getNftAllOwnerships
+      parameters:
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowNftOwnerships"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/ownerships/byItem":
+    get:
+      tags:
+        - flow-nft-ownership-controller
+      operationId: getNftOwnershipsByItem
+      parameters:
+        - name: contract
+          in: query
+          required: true
+          schema:
+            "$ref": "#/components/schemas/FlowAddress"
+        - name: tokenId
+          in: query
+          required: true
+          schema:
+            "$ref": "#/components/schemas/BigInteger"
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowNftOwnerships"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"

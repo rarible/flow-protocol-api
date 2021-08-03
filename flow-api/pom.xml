@@ -51,6 +51,10 @@
                 <groupId>com.rarible.protocol</groupId>
                 <artifactId>model-generator-maven-plugin</artifactId>
                 <configuration>
+                    <schema>
+                        <type>openapi</type>
+                        <outputFile>${dir.target.classes}/flow-api.yaml</outputFile>
+                    </schema>
                     <generators>
                         <generator>
                             <lang>${generator.kotlin}</lang>
@@ -95,7 +99,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${dir.target.classes}/openapi.yaml</inputSpec>
+                            <inputSpec>${dir.target.classes}/flow-api.yaml</inputSpec>
                             <apiPackage>com.rarible.protocol.flow.nft.api.controller</apiPackage>
                             <generatorName>rarible-server</generatorName>
                             <generateModels>false</generateModels>

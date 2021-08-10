@@ -114,6 +114,9 @@ components:
         - items
       type: object
       properties:
+        total:
+          type: integer
+          format: int32
         continuation:
           type: string
           description: Continuation token to paginate items search result

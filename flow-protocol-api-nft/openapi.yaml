@@ -280,6 +280,7 @@ paths:
           required: false
           schema:
             type: string
+            example: "1628227478_0xe91e497115b9731b:11"
         - name: size
           in: query
           required: false

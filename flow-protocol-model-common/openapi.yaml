@@ -263,6 +263,9 @@ components:
       required:
         - items
       properties:
+        total:
+          type: integer
+          format: int32
         continuation:
           type: string
         items:

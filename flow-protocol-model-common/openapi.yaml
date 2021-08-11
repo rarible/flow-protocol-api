@@ -246,7 +246,7 @@ components:
         "@type":
           type: string
           enum:
-            - "list"
+            - "cancel_list"
         hash:
           type: string
         maker:

@@ -174,7 +174,7 @@ components:
       oneOf:
         - $ref: "#/components/schemas/FlowNftOrderActivityList"
         - $ref: "#/components/schemas/FlowNftOrderActivitySell"
-
+        - $ref: "#/components/schemas/FlowNftOrderActivityCancelList"
 
     FlowNftOrderActivityList:
       type: object
@@ -217,6 +217,38 @@ components:
           type: string
           enum:
             - "sell"
+        left:
+          $ref: "#/components/schemas/OrderActivityMatchSide"
+        right:
+          $ref: "#/components/schemas/OrderActivityMatchSide"
+        price:
+          $ref: "#/components/schemas/BigDecimal"
+        transactionHash:
+          type: string
+        blockHash:
+          type: string
+        blockNumber:
+          type: integer
+          format: int64
+        logIndex:
+          type: integer
+
+    FlowNftOrderActivityCancelList:
+      type: object
+      required:
+        - "@type"
+        - left
+        - right
+        - price
+        - transactionHash
+        - blockHash
+        - blockNumber
+        - logIndex
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "cancel_list"
         left:
           $ref: "#/components/schemas/OrderActivityMatchSide"
         right:

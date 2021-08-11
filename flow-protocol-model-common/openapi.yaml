@@ -237,33 +237,26 @@ components:
       type: object
       required:
         - "@type"
-        - left
-        - right
+        - hash
+        - maker
+        - make
+        - take
         - price
-        - transactionHash
-        - blockHash
-        - blockNumber
-        - logIndex
       properties:
         "@type":
           type: string
           enum:
-            - "cancel_list"
-        left:
-          $ref: "#/components/schemas/OrderActivityMatchSide"
-        right:
-          $ref: "#/components/schemas/OrderActivityMatchSide"
+            - "list"
+        hash:
+          type: string
+        maker:
+          $ref: "#/components/schemas/FlowAddress"
+        make:
+          $ref: "#/components/schemas/FlowAsset"
+        take:
+          $ref: "#/components/schemas/FlowAsset"
         price:
-          $ref: "#/components/schemas/BigDecimal"
-        transactionHash:
-          type: string
-        blockHash:
-          type: string
-        blockNumber:
-          type: integer
-          format: int64
-        logIndex:
-          type: integer
+          $ref: "#/components/schemas/BigInteger"
 
     FlowActivities:
       type: object

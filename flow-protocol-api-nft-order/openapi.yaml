@@ -230,6 +230,11 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: showDeleted
+          in: query
+          required: false
+          schema:
+            type: boolean
       responses:
         '200':
           description: OK

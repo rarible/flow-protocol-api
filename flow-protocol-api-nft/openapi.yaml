@@ -4,13 +4,13 @@ info:
   version: v0.1
 
 paths:
-  '/v0.1/items/':
+  '/v0.1/items/all':
     get:
       tags:
         - flow-nft-item-controller
       summary: All items.
       description: ""
-      operationId: getAllItems
+      operationId: getNftAllItems
       parameters:
         - name: continuation
           in: query
@@ -25,6 +25,11 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: showDeleted
+          in: query
+          required: false
+          schema:
+            type: boolean
       responses:
         '200':
           description: OK
@@ -60,7 +65,7 @@ paths:
         - flow-nft-item-controller
       summary: All items filtered by address of an owner.
       description: ""
-      operationId: getItemsByAccount
+      operationId: getNftItemsByOwner
       parameters:
         - name: address
           in: query
@@ -94,7 +99,7 @@ paths:
         - flow-nft-item-controller
       summary: All items filtered by address of a creator.
       description: ""
-      operationId: getItemsByCreator
+      operationId: getNftItemsByCreator
       parameters:
         - name: address
           in: query
@@ -142,7 +147,7 @@ paths:
     get:
       tags:
         - flow-nft-item-controller
-      operationId: getItemMeta
+      operationId: getNftItemMetaById
       parameters:
         - name: itemId
           in: path

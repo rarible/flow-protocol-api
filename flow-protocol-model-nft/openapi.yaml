@@ -188,6 +188,13 @@ components:
         owner:
           type: string
           description: Owner's account address
+        creators:
+          type: array
+          items:
+            $ref: "#/components/schemas/PayInfo"
+        date:
+          type: string
+          format: date-time
 
     FlowNftCollection:
       type: object

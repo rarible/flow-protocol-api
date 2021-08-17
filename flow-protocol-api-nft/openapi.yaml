@@ -8,7 +8,6 @@ paths:
     get:
       tags:
         - flow-nft-item-controller
-      summary: All items.
       description: ""
       operationId: getNftAllItems
       parameters:
@@ -42,7 +41,6 @@ paths:
     get:
       tags:
         - flow-nft-item-controller
-      summary: All items.
       description: ""
       operationId: getNftItemById
       parameters:
@@ -63,7 +61,6 @@ paths:
     get:
       tags:
         - flow-nft-item-controller
-      summary: All items filtered by address of an owner.
       description: ""
       operationId: getNftItemsByOwner
       parameters:
@@ -97,7 +94,6 @@ paths:
     get:
       tags:
         - flow-nft-item-controller
-      summary: All items filtered by address of a creator.
       description: ""
       operationId: getNftItemsByCreator
       parameters:
@@ -131,7 +127,6 @@ paths:
     get:
       tags:
         - flow-nft-item-controller
-      summary: Listed items.
       description: ""
       operationId: getListedItems
       responses:
@@ -164,7 +159,6 @@ paths:
     post:
       tags:
         - flow-nft-item-controller
-      summary: Save item's meta information.
       description: ""
       operationId: saveItemsMeta
       parameters:

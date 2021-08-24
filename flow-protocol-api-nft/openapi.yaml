@@ -180,33 +180,6 @@ paths:
               schema:
                 type: string
 
-  "/v0.1/collections/{collection}":
-    get:
-      tags:
-        - flow-nft-collection-controller
-      description: Returns Collection by ID
-      operationId: getNftCollectionById
-      parameters:
-        - name: collection
-          in: path
-          required: true
-          schema:
-            type: string
-            example:
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/FlowNftCollection"
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/FlowApiError"
-
   "/v0.1/items/byCollection":
     get:
       tags:
@@ -334,6 +307,101 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/FlowNftOwnerships"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/collections/{collection}":
+    get:
+      tags:
+        - flow-nft-collection-controller
+      description: Returns Collection by ID
+      operationId: getNftCollectionById
+      parameters:
+        - name: collection
+          in: path
+          required: true
+          schema:
+            type: string
+            example:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowNftCollection"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/collections/byOwner":
+    get:
+      tags:
+        - flow-nft-collection-controller
+      operationId: searchNftCollectionsByOwner
+      parameters:
+        - name: owner
+          in: query
+          description: owner of searching collections
+          required: true
+          schema:
+            "$ref": "#/components/schemas/FlowAddress"
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowNftCollections"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/collections/all":
+    get:
+      tags:
+        - flow-nft-collection-controller
+      operationId: searchNftAllCollections
+      parameters:
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowNftCollections"
         '500':
           description: Internal Server Error
           content:

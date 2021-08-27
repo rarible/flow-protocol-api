@@ -3,7 +3,7 @@ info:
   title: flow-protocol-model-nft
   version: v0.1
 
-paths: {}
+paths:
 components:
   schemas:
 
@@ -77,51 +77,27 @@ components:
 
     FlowNftItem:
       type: object
-      required:
-        - "id"
-        - "tokenId"
-        - "collection"
-        - "creators"
-        - "owners"
-        - "royalties"
-        - "mintedAt"
-        - "lastUpdatedAt"
-        - "supply"
-        - "deleted"
       properties:
         id:
           type: string
-          example: "FLOW:${FlowAddress}:${tokenId}"
-        collection:
-          $ref: "#/components/schemas/FlowContract"
+        contract:
+          type: string
         tokenId:
-          $ref: "#/components/schemas/BigInteger"
-        creators:
-          type: array
-          items:
-            $ref: "#/components/schemas/FlowCreator"
-        owners:
-          type: array
-          items:
-            $ref: "#/components/schemas/FlowAddress"
-        royalties:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/FlowRoyalty"
-        metaUrl:
+          type: integer
+        creator:
+          type: string
+        owner:
           type: string
         meta:
-          $ref: "#/components/schemas/Meta"
-        mintedAt:
-          type: "string"
-          format: "date-time"
-        lastUpdatedAt:
-          type: "string"
-          format: "date-time"
-        supply:
-          $ref: "#/components/schemas/BigInteger"
-        deleted:
-          type: "boolean"
+          type: string
+        date:
+          type: string
+          format: date-time
+          description: ISO date time
+        listed:
+          type: boolean
+        collection:
+          type: string
 
     FlowNftItemEvent:
       required:
@@ -179,10 +155,6 @@ components:
         tokenId:
           type: integer
 
-#
-# Для чего нижние две схемы? `FlowItemMetaForm` и `FlowItemMeta`
-# В чем их отличие?
-#
     FlowItemMetaForm:
       type: object
       properties:
@@ -207,7 +179,6 @@ components:
 
     FlowNftItems:
       required:
-        - total
         - items
       type: object
       properties:
@@ -268,8 +239,7 @@ components:
 
     FlowNftOwnership:
       required:
-        - id
-        - contract
+        - token
         - tokenId
         - owner
         - creators
@@ -279,18 +249,21 @@ components:
         id:
           type: string
           description: Ownership identifier, has format "token:tokenId:owner"
-        contract:
-          $ref: "#/components/schemas/FlowContract"
+        token:
+          type: string
+          description: Token contract address
         tokenId:
           type: string
           description: Token ID
         owner:
           $ref: "#/components/schemas/FlowAddress"
+          type: string
+          description: Owner's account address
         creators:
           type: array
           items:
             $ref: "#/components/schemas/PayInfo"
-        createdAt:
+        date:
           type: string
           format: date-time
 
@@ -303,7 +276,9 @@ components:
         - symbol
       properties:
         id:
-          $ref: "#/components/schemas/FlowContract"
+          type: string
+          example: "A.e4e5f90bf7e2a25f.NFTProvider.NFT"
+          description: ID of collection (full resource name)
         owner:
           $ref: "#/components/schemas/FlowAddress"
         name:

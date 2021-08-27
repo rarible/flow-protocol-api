@@ -28,3 +28,110 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/aggregations/nftSellByMaker":
+    get:
+      tags:
+        - order-aggregation-controller
+      operationId: aggregateNftSellByMaker
+      description: Aggregate nft sell order by maker
+      parameters:
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/FlowAggregationData"
+
+  "/v0.1/aggregations/nftPurchaseByTaker":
+    get:
+      tags:
+        - order-aggregation-controller
+      operationId: aggregateNftPurchaseByTaker
+      description: Aggregate nft purchase by taker
+      parameters:
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/FlowAggregationData"
+
+  "/v0.1/aggregations/nftPurchaseByCollection":
+    get:
+      tags:
+        - order-aggregation-controller
+      operationId: aggregateNftPurchaseBuyCollection
+      description: Aggregate nft purchase by collection
+      parameters:
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/FlowAggregationData"

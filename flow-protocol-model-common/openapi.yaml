@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: flow-protocol-model-common
   version: v0.1
-paths: {}
+paths:
 components:
   schemas:
 
@@ -13,22 +13,16 @@ components:
       type: string
 
     BigInteger:
-      type: number
-      format: biginteger
+      type: string
       example: 717802
 
     BigDecimal:
-      type: number
-      format: bigdecimal
+      type: string
       example: 717802.342336
 
     FlowAddress:
       type: string
       example: "0x5c075acc71f2f41c"
-
-    FlowContract:
-      type: string
-      example: "A.${FlowAddress}.${string}"
 
     FlowAsset:
       type: object
@@ -37,7 +31,7 @@ components:
         - value
       properties:
         contract:
-          $ref: "#/components/schemas/FlowContract"
+          $ref: "#/components/schemas/FlowAddress"
         value:
           $ref: "#/components/schemas/BigDecimal"
       oneOf:
@@ -53,7 +47,7 @@ components:
         "@type":
           type: string
           enum:
-            - "FLOW_NFT"
+            - "nft"
         tokenId:
           $ref: "#/components/schemas/BigInteger"
 
@@ -65,24 +59,18 @@ components:
         "@type":
           type: string
           enum:
-            - "FLOW_FT"
+            - "fungible"
 
     OrderActivityMatchSide:
       type: object
       required:
         - maker
         - asset
-        - type
       properties:
         maker:
           $ref: "#/components/schemas/FlowAddress"
         asset:
           $ref: "#/components/schemas/FlowAsset"
-        type:
-          type: string
-          enum:
-            - "SELL"
-            - "BID"
 
     FlowApiError:
       required:
@@ -134,7 +122,7 @@ components:
         owner:
           $ref: "#/components/schemas/FlowAddress"
         contract:
-          $ref: "#/components/schemas/FlowContract"
+          $ref: "#/components/schemas/FlowAddress"
         tokenId:
           $ref: "#/components/schemas/BigInteger"
         value:

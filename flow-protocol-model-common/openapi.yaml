@@ -61,16 +61,23 @@ components:
           enum:
             - "fungible"
 
-    OrderActivityMatchSide:
+    FlowOrderActivityMatchSide:
       type: object
-      required:
-        - maker
-        - asset
       properties:
         maker:
           $ref: "#/components/schemas/FlowAddress"
         asset:
           $ref: "#/components/schemas/FlowAsset"
+        type:
+          type: "string"
+          enum:
+            - "SELL"
+            - "BID"
+      required:
+        - "maker"
+        - "asset"
+        - "type"
+
 
     FlowApiError:
       required:
@@ -223,9 +230,9 @@ components:
           enum:
             - "sell"
         left:
-          $ref: "#/components/schemas/OrderActivityMatchSide"
+          $ref: "#/components/schemas/FlowOrderActivityMatchSide"
         right:
-          $ref: "#/components/schemas/OrderActivityMatchSide"
+          $ref: "#/components/schemas/FlowOrderActivityMatchSide"
         price:
           $ref: "#/components/schemas/BigDecimal"
         transactionHash:

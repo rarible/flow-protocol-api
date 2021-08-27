@@ -21,7 +21,7 @@ components:
     MetaContent:
       type: "object"
       properties:
-        typeContent:
+        contentType:
           type: "string"
         url:
           type: "string"
@@ -30,7 +30,7 @@ components:
           items:
             $ref: "#/components/schemas/MetaAttribute"
       required:
-        - "typeContent"
+        - "contentType"
         - "url"
 
     Meta:
@@ -271,7 +271,7 @@ components:
         - id
         - contract
         - tokenId
-        - owners
+        - owner
         - creators
         - createdAt
       type: object
@@ -284,11 +284,8 @@ components:
         tokenId:
           type: string
           description: Token ID
-        owners:
-          type: array
-          items:
-            $ref: "#/components/schemas/FlowAddress"
-          description: Owner's account address
+        owner:
+          $ref: "#/components/schemas/FlowAddress"
         creators:
           type: array
           items:

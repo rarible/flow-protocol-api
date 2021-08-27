@@ -84,6 +84,11 @@ components:
           format: int32
         code:
           type: string
+          enum:
+            - "UNKNOWN"
+            - "BAD_REQUEST"
+            - "VALIDATION"
+            - "NOT_FOUND"
         message:
           type: string
 

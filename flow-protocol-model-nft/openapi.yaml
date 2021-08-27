@@ -7,6 +7,74 @@ paths:
 components:
   schemas:
 
+    MetaAttribute:
+      type: "object"
+      properties:
+        key:
+          type: "string"
+        value:
+          type: "string"
+      required:
+        - "key"
+        - "value"
+
+    MetaContent:
+      type: "object"
+      properties:
+        contentType:
+          type: "string"
+        url:
+          type: "string"
+        attributes:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/MetaAttribute"
+      required:
+        - "contentType"
+        - "url"
+
+    Meta:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        description:
+          type: "string"
+        attributes:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/MetaAttribute"
+        contents:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/MetaContent"
+        raw:
+          $ref: "#/components/schemas/Binary"
+      required:
+        - "name"
+
+    FlowCreator:
+      type: "object"
+      properties:
+        account:
+          $ref: "#/components/schemas/FlowAddress"
+        value:
+          $ref: "#/components/schemas/BigDecimal"
+      required:
+        - "account"
+        - "value"
+
+    FlowRoyalty:
+      type: "object"
+      properties:
+        account:
+          $ref: "#/components/schemas/FlowAddress"
+        value:
+          $ref: "#/components/schemas/BigDecimal"
+      required:
+        - "account"
+        - "value"
+
     FlowNftItem:
       type: object
       properties:
@@ -174,6 +242,8 @@ components:
         - token
         - tokenId
         - owner
+        - creators
+        - createdAt
       type: object
       properties:
         id:
@@ -186,6 +256,7 @@ components:
           type: string
           description: Token ID
         owner:
+          $ref: "#/components/schemas/FlowAddress"
           type: string
           description: Owner's account address
         creators:

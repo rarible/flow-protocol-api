@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: flow-protocol-model-order
   version: v0.1
-paths: {}
+paths:
 components:
   schemas:
 
@@ -24,11 +24,11 @@ components:
         itemId:
           type: string
         collection:
-          $ref: "#/components/schemas/FlowContract"
+          type: string
         maker:
-          $ref: "#/components/schemas/FlowAddress"
+          type: string
         taker:
-          $ref: "#/components/schemas/FlowAddress"
+          type: string
         make:
           $ref: "#/components/schemas/FlowAsset"
         take:

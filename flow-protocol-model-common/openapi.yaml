@@ -6,24 +6,6 @@ paths:
 components:
   schemas:
 
-    Word:
-      type: string
-
-    Binary:
-      type: string
-
-    BigInteger:
-      type: string
-      example: 717802
-
-    BigDecimal:
-      type: string
-      example: 717802.342336
-
-    FlowAddress:
-      type: string
-      example: "0x5c075acc71f2f41c"
-
     FlowAsset:
       type: object
       required:
@@ -144,9 +126,9 @@ components:
         logIndex:
           type: integer
       oneOf:
-        - $ref: "#/components/schemas/Mint"
-        - $ref: "#/components/schemas/Burn"
-        - $ref: "#/components/schemas/Transfer"
+        - $ref: "#/components/schemas/FlowMint"
+        - $ref: "#/components/schemas/FlowBurn"
+        - $ref: "#/components/schemas/FlowTransfer"
 
     FlowMint:
       type: object
@@ -295,3 +277,21 @@ components:
           $ref: "#/components/schemas/FlowAddress"
         value:
           $ref: "#/components/schemas/BigDecimal"
+
+    Word:
+      type: string
+
+    Binary:
+      type: string
+
+    BigInteger:
+      type: string
+      example: 717802
+
+    BigDecimal:
+      type: string
+      example: 717802.342336
+
+    FlowAddress:
+      type: string
+      example: "0x5c075acc71f2f41c"

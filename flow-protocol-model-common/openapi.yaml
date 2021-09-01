@@ -211,7 +211,7 @@ components:
         take:
           $ref: "#/components/schemas/FlowAsset"
         price:
-          $ref: "#/components/schemas/BigInteger"
+          $ref: "#/components/schemas/BigDecimal"
 
     FlowNftOrderActivitySell:
       type: object
@@ -268,7 +268,7 @@ components:
         take:
           $ref: "#/components/schemas/FlowAsset"
         price:
-          $ref: "#/components/schemas/BigInteger"
+          $ref: "#/components/schemas/BigDecimal"
 
     FlowActivities:
       type: object

@@ -21,11 +21,25 @@
         </dependency>
         <dependency>
             <groupId>com.rarible.protocol</groupId>
+            <artifactId>flow-protocol-api-nft-order</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.rarible.protocol</groupId>
+            <artifactId>flow-protocol-api-order</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.rarible.protocol</groupId>
             <artifactId>flow-protocol-model-nft</artifactId>
         </dependency>
         <dependency>
             <groupId>com.rarible.protocol</groupId>
             <artifactId>flow-protocol-model-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.rarible.protocol</groupId>
+            <artifactId>flow-protocol-model-order</artifactId>
         </dependency>
         <dependency>
             <groupId>com.rarible.protocol</groupId>
@@ -57,6 +71,14 @@
                     <dependencies>
                         <dependency>
                             <name>flow-protocol-api-nft</name>
+                            <packageName>${generator.package}</packageName>
+                        </dependency>
+                        <dependency>
+                            <name>flow-protocol-api-nft-order</name>
+                            <packageName>${generator.package}</packageName>
+                        </dependency>
+                        <dependency>
+                            <name>flow-protocol-api-order</name>
                             <packageName>${generator.package}</packageName>
                         </dependency>
                     </dependencies>

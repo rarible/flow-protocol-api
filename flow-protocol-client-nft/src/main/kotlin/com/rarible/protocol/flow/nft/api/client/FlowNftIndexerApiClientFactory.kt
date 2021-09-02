@@ -15,6 +15,24 @@ open class FlowNftIndexerApiClientFactory(
         return FlowNftItemControllerApi(createApiClient(blockchain))
     }
 
+    fun createNftOwnershipApiClient(blockchain: String): FlowNftOwnershipControllerApi {
+        return FlowNftOwnershipControllerApi(createApiClient(blockchain))
+    }
+
+    fun createNftOrderApiClient(blockchain: String): FlowOrderControllerApi {
+        return FlowOrderControllerApi(createApiClient(blockchain))
+    }
+
+    fun createNftCollectionApiClient(blockchain: String): FlowNftCollectionControllerApi {
+        return FlowNftCollectionControllerApi(createApiClient(blockchain))
+    }
+
+    fun createNftOrderActivityApiClient(blockchain: String): FlowNftOrderActivityControllerApi {
+        return FlowNftOrderActivityControllerApi(createApiClient(blockchain))
+    }
+
+
+
 
     private fun createApiClient(blockchain: String): ApiClient {
         return ApiClient(webClientCustomizer)

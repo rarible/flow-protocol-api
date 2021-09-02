@@ -35,11 +35,11 @@ class FlowNftIndexerEventsConsumerFactory(
         )
     }
 
-    fun createORderEventsConsumer(consumerGroup: String): RaribleKafkaConsumer<FlowOrderDto> {
+    fun createORderEventsConsumer(consumerGroup: String): RaribleKafkaConsumer<FlowOrderEventDto> {
         return RaribleKafkaConsumer(
             clientId = "$clientIdPrefix.flow-nft-indexer-order-events-consumer",
             valueDeserializerClass = JsonDeserializer::class.java,
-            valueClass = FlowOrderDto::class.java,
+            valueClass = FlowOrderEventDto::class.java,
             consumerGroup = consumerGroup,
             defaultTopic = FlowOrderEventTopicProvider.getTopic(environment),
             bootstrapServers = brokerReplicaSet

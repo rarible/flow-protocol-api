@@ -84,6 +84,7 @@ components:
           type: string
         tokenId:
           type: integer
+          format: int64
         creator:
           type: string
         owner:
@@ -154,6 +155,7 @@ components:
           type: string
         tokenId:
           type: integer
+          format: int64
 
     FlowItemMetaForm:
       type: object
@@ -253,7 +255,8 @@ components:
           type: string
           description: Token contract address
         tokenId:
-          type: string
+          type: integer
+          format: int64
           description: Token ID
         owner:
           $ref: "#/components/schemas/FlowAddress"

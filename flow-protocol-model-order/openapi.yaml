@@ -9,6 +9,7 @@ components:
     FlowOrder:
       type: object
       required:
+        - id
         - itemId
         - collection
         - amount
@@ -21,6 +22,9 @@ components:
         - createdAt
         - lastUpdateAt
       properties:
+        id:
+          type: integer
+          format: int64
         itemId:
           type: string
         collection:

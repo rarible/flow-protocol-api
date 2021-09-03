@@ -6,6 +6,28 @@ paths:
 components:
   schemas:
 
+    Word:
+      type: string
+
+    Binary:
+      type: string
+
+    BigInteger:
+      type: string
+      example: 717802
+
+    BigDecimal:
+      type: string
+      example: 717802.342336
+
+    FlowAddress:
+      type: string
+      example: "0x5c075acc71f2f41c"
+
+    FlowContract:
+      type: string
+      example: "A.e4e5f90bf7e2a25f.NFTProvider.NFT"
+
     FlowAsset:
       type: object
       required:
@@ -278,25 +300,4 @@ components:
         value:
           $ref: "#/components/schemas/BigDecimal"
 
-    Word:
-      type: string
-
-    Binary:
-      type: string
-
-    BigInteger:
-      type: string
-      example: 717802
-
-    BigDecimal:
-      type: string
-      example: 717802.342336
-
-    FlowAddress:
-      type: string
-      example: "0x5c075acc71f2f41c"
-
-    FlowContract:
-      type: string
-      example: "A.e4e5f90bf7e2a25f.NFTProvider.NFT"
 

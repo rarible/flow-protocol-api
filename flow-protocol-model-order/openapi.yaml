@@ -24,11 +24,11 @@ components:
         itemId:
           type: string
         collection:
-          type: string
+          $ref: "#/components/schemas/FlowContract"
         maker:
-          type: string
+          $ref: "#/components/schemas/FlowAddress"
         taker:
-          type: string
+          $ref: "#/components/schemas/FlowAddress"
         make:
           $ref: "#/components/schemas/FlowAsset"
         take:
@@ -70,7 +70,7 @@ components:
       required:
         - order
       properties:
-        "@type":
+        type:
           type: string
           enum:
             - UPDATE

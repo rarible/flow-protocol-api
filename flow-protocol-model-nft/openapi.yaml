@@ -77,28 +77,51 @@ components:
 
     FlowNftItem:
       type: object
+      required:
+        - "id"
+        - "tokenId"
+        - "collection"
+        - "creators"
+        - "owners"
+        - "royalties"
+        - "mintedAt"
+        - "lastUpdatedAt"
+        - "supply"
+        - "deleted"
       properties:
         id:
           type: string
-        contract:
-          type: string
+          example: "${FlowContract}:${tokenId}"
+        collection:
+          $ref: "#/components/schemas/FlowContract"
         tokenId:
-          type: integer
-          format: int64
-        creator:
-          type: string
-        owner:
+          $ref: "#/components/schemas/BigInteger"
+        creators:
+          type: array
+          items:
+            $ref: "#/components/schemas/FlowCreator"
+        owners:
+          type: array
+          items:
+            $ref: "#/components/schemas/FlowAddress"
+        royalties:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/FlowRoyalty"
+        metaUrl:
           type: string
         meta:
-          type: string
-        date:
-          type: string
-          format: date-time
-          description: ISO date time
-        listed:
-          type: boolean
-        collection:
-          type: string
+          $ref: "#/components/schemas/Meta"
+        mintedAt:
+          type: "string"
+          format: "date-time"
+        lastUpdatedAt:
+          type: "string"
+          format: "date-time"
+        supply:
+          $ref: "#/components/schemas/BigInteger"
+        deleted:
+          type: "boolean"
 
     FlowNftItemEvent:
       required:
@@ -251,9 +274,8 @@ components:
         id:
           type: string
           description: Ownership identifier, has format "token:tokenId:owner"
-        token:
-          type: string
-          description: Token contract address
+        contract:
+          $ref: "#/components/schemas/FlowContract"
         tokenId:
           type: integer
           format: int64
@@ -266,7 +288,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PayInfo"
-        date:
+        createdAt:
           type: string
           format: date-time
 
@@ -279,9 +301,7 @@ components:
         - symbol
       properties:
         id:
-          type: string
-          example: "A.e4e5f90bf7e2a25f.NFTProvider.NFT"
-          description: ID of collection (full resource name)
+          $ref: "#/components/schemas/FlowContract"
         owner:
           $ref: "#/components/schemas/FlowAddress"
         name:

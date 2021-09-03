@@ -1,3 +1,4 @@
 {
-  "FlowAddress": "kotlin.String"
+  "FlowAddress": "kotlin.String",
+  "FlowContract": "kotlin.String"
 }

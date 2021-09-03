@@ -69,8 +69,9 @@ components:
       type: object
       required:
         - order
+        - "@type"
       properties:
-        type:
+        "@type":
           type: string
           enum:
             - UPDATE

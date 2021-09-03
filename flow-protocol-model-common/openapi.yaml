@@ -45,10 +45,10 @@ components:
     FlowAssetNFT:
       type: object
       required:
-        - type
+        - "@type"
         - tokenId
       properties:
-        type:
+        "@type":
           type: string
           enum:
             - "nft"
@@ -58,9 +58,9 @@ components:
     FlowAssetFungible:
       type: object
       required:
-        - type
+        - "@type"
       properties:
-        type:
+        "@type":
           type: string
           enum:
             - "fungible"
@@ -155,9 +155,9 @@ components:
     FlowMint:
       type: object
       required:
-        - type
+        - "@type"
       properties:
-        type:
+        "@type":
           type: string
           enum:
             - "mint"
@@ -165,9 +165,9 @@ components:
     FlowBurn:
       type: object
       required:
-        - type
+        - "@type"
       properties:
-        type:
+        "@type":
           type: string
           enum:
             - "burn"
@@ -176,9 +176,9 @@ components:
       type: object
       required:
         - from
-        - type
+        - "@type"
       properties:
-        type:
+        "@type":
           type: string
           enum:
             - "transfer"
@@ -195,14 +195,14 @@ components:
     FlowNftOrderActivityList:
       type: object
       required:
-        - type
+        - "@type"
         - hash
         - maker
         - make
         - take
         - price
       properties:
-        type:
+        "@type":
           type: string
           enum:
             - "list"
@@ -220,7 +220,7 @@ components:
     FlowNftOrderActivitySell:
       type: object
       required:
-        - type
+        - "@type"
         - left
         - right
         - price
@@ -229,7 +229,7 @@ components:
         - blockNumber
         - logIndex
       properties:
-        type:
+        "@type":
           type: string
           enum:
             - "sell"
@@ -252,14 +252,14 @@ components:
     FlowNftOrderActivityCancelList:
       type: object
       required:
-        - type
+        - "@type"
         - hash
         - maker
         - make
         - take
         - price
       properties:
-        type:
+        "@type":
           type: string
           enum:
             - "cancel_list"

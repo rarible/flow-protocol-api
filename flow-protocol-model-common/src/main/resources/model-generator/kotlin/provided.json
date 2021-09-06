@@ -1,4 +1,6 @@
 {
   "FlowAddress": "kotlin.String",
-  "FlowContract": "kotlin.String"
+  "FlowContract": "kotlin.String",
+  "Word": "kotlin.String",
+  "Binary": "kotlin.String"
 }

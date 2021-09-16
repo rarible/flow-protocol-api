@@ -40,7 +40,7 @@ components:
         data:
           $ref: "#/components/schemas/FlowOrderData"
         fill:
-          $ref: "#/components/schemas/BigInteger"
+          $ref: "#/components/schemas/BigDecimal"
         cancelled:
           type: boolean
         createdAt:

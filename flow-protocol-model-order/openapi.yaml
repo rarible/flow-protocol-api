@@ -16,11 +16,13 @@ components:
         - amountUsd
         - maker
         - make
+        - take
         - data
         - fill
         - cancelled
         - createdAt
         - lastUpdateAt
+        - makeStock
       properties:
         id:
           type: integer
@@ -53,8 +55,16 @@ components:
           $ref: "#/components/schemas/BigDecimal"
         offeredNftId:
           type: string
-        amountUsd:
+        priceUsd:
           $ref: "#/components/schemas/BigDecimal"
+        makeStock:
+          $ref: "#/components/schemas/BigInteger"
+        start:
+          type: integer
+          format: int64
+        end:
+          type: integer
+          format: int64
 
     FlowOrderEvent:
       type: object

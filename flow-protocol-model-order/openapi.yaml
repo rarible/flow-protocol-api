@@ -60,11 +60,11 @@ components:
         makeStock:
           $ref: "#/components/schemas/BigInteger"
         start:
-          type: integer
-          format: int64
+          type: string
+          format: date-time
         end:
-          type: integer
-          format: int64
+          type: string
+          format: date-time
 
     FlowOrderEvent:
       type: object

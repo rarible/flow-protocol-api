@@ -408,3 +408,39 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/crypto/verify":
+    get:
+      tags:
+        - flow-nft-crypto-controller
+      operationId: verifySignature
+      parameters:
+        - name: publicKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: signature
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: message
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"

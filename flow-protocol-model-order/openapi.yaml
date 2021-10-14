@@ -142,3 +142,14 @@ components:
         - HISTORICAL
         - INACTIVE
         - CANCELLED
+
+    FlowOrderIds:
+      type: object
+      required:
+        - ids
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+            format: int64

@@ -32,9 +32,12 @@ components:
       type: object
       required:
         - contract
+        - value
       properties:
         contract:
           $ref: "#/components/schemas/FlowContract"
+        value:
+          $ref: "#/components/schemas/BigDecimal"
       oneOf:
         - $ref: "#/components/schemas/FlowAssetNFT"
         - $ref: "#/components/schemas/FlowAssetFungible"
@@ -44,7 +47,6 @@ components:
       required:
         - "@type"
         - tokenId
-        - value
       properties:
         "@type":
           type: string
@@ -52,21 +54,16 @@ components:
             - "nft"
         tokenId:
           $ref: "#/components/schemas/BigInteger"
-        value:
-          $ref: "#/components/schemas/BigInteger"
 
     FlowAssetFungible:
       type: object
       required:
         - "@type"
-        - value
       properties:
         "@type":
           type: string
           enum:
             - "fungible"
-        value:
-          $ref: "#/components/schemas/BigDecimal"
 
     FlowOrderActivityMatchSide:
       type: object

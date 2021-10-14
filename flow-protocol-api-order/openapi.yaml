@@ -67,6 +67,67 @@ paths:
         '500':
           $ref: "#/components/responses/ServerError"
 
+  "/v0.1/orders/all":
+    get:
+      deprecated: true
+      tags:
+        - flow-order-controller
+      description: Returns all orders by specified parameters
+      operationId: getOrdersAll
+      parameters:
+        - name: origin
+          description: "Address of the consumer to receive the commission for order"
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: continuation
+          description: "Continuation token to paginate items search result"
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          description: "The number of orders to return"
+          in: query
+          required: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+      responses:
+        '200':
+          $ref: "#/components/responses/FlowOrdersPage"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
+  "/v0.1/orders/byIds":
+    post:
+      tags:
+        - flow-order-controller
+      description: Returns all orders by order hash
+      operationId: getOrdersByIds
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlowOrderIds"
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FlowOrder"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
 
   "/v0.1/orders/sell/byMaker":
     get:
@@ -189,7 +250,7 @@ paths:
   "/v0.1/orders/sell/byItemAndByStatus":
     get:
       tags:
-        - order-controller
+        - flow-order-controller
       operationId: getSellOrdersByItemAndByStatus
       parameters:
         - name: contract
@@ -231,6 +292,11 @@ paths:
             type: array
             items:
               $ref: "#/components/schemas/FlowOrderStatus"
+        - name: currencyAddress
+          in: query
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           $ref: "#/components/responses/FlowOrdersPage"
@@ -358,7 +424,7 @@ paths:
   "/v0.1/bids/byItem":
     get:
       tags:
-        - order-bid-controller
+        - flow-order-controller
       operationId: getBidsByItem
       parameters:
         - name: contract

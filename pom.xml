@@ -50,7 +50,7 @@
 
         <!-- ========= Internal Dependencies ========== -->
         <version.model.generator>1.2.5</version.model.generator>
-        <version.rarible.core>1.3.4</version.rarible.core>
+        <version.rarible.core>1.3.6</version.rarible.core>
         <version.rarible.ethereum>1.0-SNAPSHOT</version.rarible.ethereum>
         <version.flow.protocol.api>${project.version}</version.flow.protocol.api>
         <version.protocol.api>2.0-SNAPSHOT</version.protocol.api>

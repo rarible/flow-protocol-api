@@ -29,6 +29,465 @@ paths:
               schema:
                 "$ref": "#/components/schemas/FlowApiError"
 
+  "/v0.1/orders/all/byStatus":
+    get:
+      tags:
+        - flow-order-controller
+      operationId: getOrdersAllByStatus
+      parameters:
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/FlowOrderStatus"
+      responses:
+        '200':
+          $ref: "#/components/responses/FlowOrdersPage"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
+  "/v0.1/orders/all":
+    get:
+      deprecated: true
+      tags:
+        - flow-order-controller
+      description: Returns all orders by specified parameters
+      operationId: getOrdersAll
+      parameters:
+        - name: origin
+          description: "Address of the consumer to receive the commission for order"
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: continuation
+          description: "Continuation token to paginate items search result"
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          description: "The number of orders to return"
+          in: query
+          required: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+      responses:
+        '200':
+          $ref: "#/components/responses/FlowOrdersPage"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
+  "/v0.1/orders/byIds":
+    post:
+      tags:
+        - flow-order-controller
+      description: Returns all orders by order hash
+      operationId: getOrdersByIds
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlowOrderIds"
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FlowOrder"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
+  "/v0.1/orders/sell/byMaker":
+    get:
+      tags:
+        - flow-order-controller
+      operationId: getSellOrdersByMaker
+      parameters:
+        - name: maker
+          in: query
+          required: true
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: origin
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+      responses:
+        '200':
+          $ref: "#/components/responses/FlowOrdersPage"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
+  "/v0.1/orders/sell/byItem":
+    get:
+      tags:
+        - flow-order-controller
+      operationId: getSellOrdersByItem
+      parameters:
+        - name: contract
+          in: query
+          required: true
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: tokenId
+          in: query
+          required: true
+          schema:
+            $ref: "#/components/schemas/BigInteger"
+        - name: maker
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: origin
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+      responses:
+        '200':
+          $ref: "#/components/responses/FlowOrdersPage"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
+  "/v0.1/orders/sell/byCollection":
+    get:
+      tags:
+        - flow-order-controller
+      operationId: getSellOrdersByCollection
+      parameters:
+        - name: collection
+          in: query
+          required: true
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: origin
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+      responses:
+        '200':
+          $ref: "#/components/responses/FlowOrdersPage"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
+  "/v0.1/orders/sell/byItemAndByStatus":
+    get:
+      tags:
+        - flow-order-controller
+      operationId: getSellOrdersByItemAndByStatus
+      parameters:
+        - name: contract
+          in: query
+          required: true
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: tokenId
+          in: query
+          required: true
+          schema:
+            $ref: "#/components/schemas/BigInteger"
+        - name: maker
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: origin
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/FlowOrderStatus"
+        - name: currencyAddress
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: "#/components/responses/FlowOrdersPage"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
+
+  "/v0.1/orders/sell":
+    get:
+      tags:
+        - flow-order-controller
+      operationId: getSellOrders
+      parameters:
+        - name: origin
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+      responses:
+        '200':
+          $ref: "#/components/responses/FlowOrdersPage"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
+  ###################### Bids ######################
+
+  "/v0.1/orders/bids/byMaker":
+    get:
+      tags:
+        - flow-order-controller
+      operationId: getOrderBidsByMaker
+      parameters:
+        - name: maker
+          in: query
+          required: true
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: origin
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+      responses:
+        '200':
+          $ref: "#/components/responses/FlowOrdersPage"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
+  "/v0.1/orders/bids/byItem":
+    get:
+      tags:
+        - flow-order-controller
+      operationId: getOrderBidsByItem
+      parameters:
+        - name: contract
+          in: query
+          required: true
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: tokenId
+          in: query
+          required: true
+          schema:
+            $ref: "#/components/schemas/BigInteger"
+        - name: maker
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: origin
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+      responses:
+        '200':
+          $ref: "#/components/responses/FlowOrdersPage"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
+  "/v0.1/bids/byItem":
+    get:
+      tags:
+        - flow-order-controller
+      operationId: getBidsByItem
+      parameters:
+        - name: contract
+          in: query
+          required: true
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: tokenId
+          in: query
+          required: true
+          schema:
+            $ref: "#/components/schemas/BigInteger"
+        - name: status
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/FlowOrderStatus"
+        - name: maker
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: origin
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+      responses:
+        '200':
+          $ref: "#/components/responses/FlowOrdersPage"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
+  ######## Aggregations #######
+
   "/v0.1/aggregations/nftSellByMaker":
     get:
       tags:
@@ -135,3 +594,13 @@ paths:
                 type: array
                 items:
                   "$ref": "#/components/schemas/FlowAggregationData"
+
+components:
+  responses:
+    FlowOrdersPage:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/FlowOrdersPagination"
+

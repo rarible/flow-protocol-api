@@ -29,6 +29,22 @@ paths:
           required: false
           schema:
             type: boolean
+        - name: lastUpdatedFrom
+          in: query
+          description: "From what time the items were updated. Integer in unix format"
+          required: false
+          schema:
+            type: integer
+            format: int64
+          example: 1631653245
+        - name: lastUpdatedTo
+          in: query
+          description: "To what time the items were updated. Integer in unix format"
+          required: false
+          schema:
+            type: integer
+            format: int64
+          example: 1631782725
       responses:
         '200':
           description: OK

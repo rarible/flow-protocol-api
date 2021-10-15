@@ -121,3 +121,35 @@ components:
         count:
           type: integer
           format: int64
+
+    FlowOrdersPagination:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/FlowOrder"
+        continuation:
+          type: string
+
+    FlowOrderStatus:
+      type: string
+      enum:
+        - ACTIVE
+        - FILLED
+        - HISTORICAL
+        - INACTIVE
+        - CANCELLED
+
+    FlowOrderIds:
+      type: object
+      required:
+        - ids
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+            format: int64

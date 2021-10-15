@@ -301,3 +301,24 @@ components:
           $ref: "#/components/schemas/BigDecimal"
 
 
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/FlowApiError"
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/FlowApiError"
+    EntityNotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/FlowApiError"
+
+

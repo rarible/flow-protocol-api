@@ -14,9 +14,12 @@ components:
           type: "string"
         value:
           type: "string"
+        type:
+          type: "string"
+        format:
+          type: "string"
       required:
         - "key"
-        - "value"
 
     MetaContent:
       type: "object"
@@ -47,7 +50,7 @@ components:
         contents:
           type: "array"
           items:
-            $ref: "#/components/schemas/MetaContent"
+            type: "string"
         raw:
           $ref: "#/components/schemas/Binary"
       required:
@@ -261,6 +264,7 @@ components:
 
     FlowNftOwnership:
       required:
+        - contract
         - token
         - tokenId
         - owner
@@ -274,9 +278,7 @@ components:
         contract:
           $ref: "#/components/schemas/FlowContract"
         tokenId:
-          type: integer
-          format: int64
-          description: Token ID
+          $ref: "#/components/schemas/BigInteger"
         owner:
           $ref: "#/components/schemas/FlowAddress"
         creators:

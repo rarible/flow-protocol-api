@@ -171,7 +171,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FlowItemMeta'
+                $ref: '#/components/schemas/Meta'
     post:
       tags:
         - flow-nft-item-controller

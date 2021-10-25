@@ -337,6 +337,32 @@ paths:
         '500':
           $ref: "#/components/responses/ServerError"
 
+  "/v0.1/orders/sell/currencies/{itemId}":
+    get:
+      tags:
+        - flow-order-controller
+      operationId: getSellCurrencies
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FlowAsset"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
+
   ###################### Bids ######################
 
   "/v0.1/orders/bids/byMaker":
@@ -355,6 +381,25 @@ paths:
           required: false
           schema:
             $ref: "#/components/schemas/FlowAddress"
+        - name: status
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/FlowOrderStatus"
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
         - name: continuation
           in: query
           required: false
@@ -481,6 +526,31 @@ paths:
       responses:
         '200':
           $ref: "#/components/responses/FlowOrdersPage"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
+  "/v0.1/bids/currencies/{itemId}":
+    get:
+      tags:
+        - flow-order-controller
+      operationId: getBidCurrencies
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FlowAsset"
         '400':
           $ref: "#/components/responses/BadRequest"
         '500':

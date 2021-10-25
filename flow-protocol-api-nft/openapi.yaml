@@ -453,6 +453,11 @@ paths:
           required: true
           schema:
             type: string
+        - name: signerAddress
+          in: query
+          required: true
+          schema:
+            type: string
         - name: signature
           in: query
           required: true

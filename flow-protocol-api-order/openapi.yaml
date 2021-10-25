@@ -446,6 +446,11 @@ paths:
           required: false
           schema:
             $ref: "#/components/schemas/FlowAddress"
+        - name: currencyAddress
+          in: query
+          required: false
+          schema:
+            type: string
         - name: continuation
           in: query
           required: false

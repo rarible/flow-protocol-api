@@ -85,7 +85,6 @@ components:
         - "tokenId"
         - "collection"
         - "creators"
-        - "owners"
         - "royalties"
         - "mintedAt"
         - "lastUpdatedAt"
@@ -103,10 +102,8 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/FlowCreator"
-        owners:
-          type: array
-          items:
-            $ref: "#/components/schemas/FlowAddress"
+        owner:
+          $ref: "#/components/schemas/FlowAddress"
         royalties:
           type: "array"
           items:

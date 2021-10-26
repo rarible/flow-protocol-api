@@ -516,6 +516,11 @@ paths:
           schema:
             type: string
             format: date-time
+        - name: currencyAddress
+          in: query
+          required: false
+          schema:
+            type: string
         - name: continuation
           in: query
           required: false

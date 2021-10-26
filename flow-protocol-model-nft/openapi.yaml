@@ -123,6 +123,16 @@ components:
         deleted:
           type: "boolean"
 
+    FlowNftItemRoyalty:
+      type: object
+      required:
+        - royalty
+      properties:
+        royalty:
+          type: array
+          items:
+            "$ref": "#/components/schemas/PayInfo"
+
     FlowNftItemEvent:
       required:
         - eventId

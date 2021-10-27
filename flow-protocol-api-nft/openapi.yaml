@@ -73,6 +73,31 @@ paths:
               schema:
                 $ref: '#/components/schemas/FlowNftItem'
 
+  '/v0.1/items/{itemId}/royalty':
+    get:
+      tags:
+        - flow-nft-item-controller
+      description: ""
+      operationId: getNftItemRoyaltyById
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowNftItemRoyalty'
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
+
   '/v0.1/items/byAccount':
     get:
       tags:
@@ -139,21 +164,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FlowNftItems'
-  '/v0.1/items/listed':
-    get:
-      tags:
-        - flow-nft-item-controller
-      description: ""
-      operationId: getListedItems
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/FlowNftItem'
+
   '/v0.1/items/meta/{itemId}':
     get:
       tags:
@@ -172,29 +183,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Meta'
-    post:
-      tags:
-        - flow-nft-item-controller
-      description: ""
-      operationId: saveItemsMeta
-      parameters:
-        - name: itemId
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/FlowItemMetaForm"
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: string
+
     delete:
       tags:
         - flow-nft-item-controller

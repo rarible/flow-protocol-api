@@ -44,6 +44,14 @@ paths:
           required: false
           schema:
             type: integer
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - LATEST_FIRST
+              - EARLIEST_FIRST
       responses:
         '200':
           description: OK
@@ -171,6 +179,14 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - LATEST_FIRST
+              - EARLIEST_FIRST
       responses:
         '200':
           description: OK
@@ -353,6 +369,14 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - LATEST_FIRST
+              - EARLIEST_FIRST
       responses:
         '200':
           description: OK

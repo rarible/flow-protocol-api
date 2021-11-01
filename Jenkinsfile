@@ -1,21 +1,3 @@
-@Library('shared-library') _
+@Library('shared-library')
 
-pipeline {
-	agent any
-
-	options {
-		disableConcurrentBuilds()
-	}
-
-	stages {
-		stage('deploy') {
-			when {
-				branch 'master'
-			}
-			steps {
-				sh 'mvn clean'
-        deployToMaven('nexus-ci')
-			}
-		}
-	}
-}
+buildLibrary()

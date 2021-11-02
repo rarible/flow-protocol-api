@@ -303,6 +303,7 @@ components:
         - owner
         - name
         - symbol
+        - features
       properties:
         id:
           $ref: "#/components/schemas/FlowContract"
@@ -310,10 +311,17 @@ components:
           $ref: "#/components/schemas/FlowAddress"
         name:
           type: string
-          description: Colelction name
+          description: Collection name
         symbol:
           type: string
           description: Collection short name
+        features:
+          type: array
+          items:
+            type: string
+            enum:
+              - BURN
+              - SECONDARY_SALE_FEES
 
     FlowNftOwnerships:
       type: object

@@ -7,7 +7,7 @@ class SwarmFlowNftIndexerApiServiceUriProvider(
 ) : FlowNftIndexerApiServiceUriProvider {
 
     override fun getUri(blockchain: String): URI {
-        return URI.create("https://flow-api-$environment.rarible.com/")
+        return URI.create("https://$environment-flow-indexer-backend-api:8080")
     }
 
 }

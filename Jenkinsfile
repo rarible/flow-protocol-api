@@ -1,3 +1,3 @@
-@Library('shared-library@v20211102-2') _
+@Library('shared-library@new-cicd') _
 
 buildLibrary()

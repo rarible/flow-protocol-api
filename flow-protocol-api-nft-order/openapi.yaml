@@ -23,6 +23,7 @@ paths:
                 - BURN
                 - LIST
                 - SELL
+                - CANCEL_LIST
         - name: contract
           in: query
           required: true
@@ -92,6 +93,7 @@ paths:
                 - LIST
                 - BUY
                 - SELL
+                - CANCEL_LIST
         - name: user
           in: query
           required: true
@@ -168,6 +170,7 @@ paths:
                 - BURN
                 - LIST
                 - SELL
+                - CANCEL_LIST
         - name: continuation
           in: query
           required: false
@@ -352,6 +355,7 @@ paths:
                 - BURN
                 - LIST
                 - SELL
+                - CANCEL_LIST
         - name: collection
           in: query
           required: true

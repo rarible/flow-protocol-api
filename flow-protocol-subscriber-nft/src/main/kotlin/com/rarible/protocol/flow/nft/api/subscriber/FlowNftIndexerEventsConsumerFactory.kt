@@ -26,7 +26,7 @@ class FlowNftIndexerEventsConsumerFactory(
 
     fun createOwnershipEventsConsumer(consumerGroup: String): RaribleKafkaConsumer<FlowOwnershipEventDto> {
         return RaribleKafkaConsumer(
-            clientId = "$clientIdPrefix.flow-nft-indexer-item-events-consumer",
+            clientId = "$clientIdPrefix.flow-nft-indexer-ownership-events-consumer",
             valueDeserializerClass = JsonDeserializer::class.java,
             valueClass = FlowOwnershipEventDto::class.java,
             consumerGroup = consumerGroup,
@@ -48,7 +48,7 @@ class FlowNftIndexerEventsConsumerFactory(
 
     fun createAcitivityEventsConsumer(consumerGroup: String): RaribleKafkaConsumer<FlowActivityDto> {
         return RaribleKafkaConsumer(
-            clientId = "$clientIdPrefix.flow-nft-indexer-order-events-consumer",
+            clientId = "$clientIdPrefix.flow-nft-indexer-activity-events-consumer",
             valueDeserializerClass = JsonDeserializer::class.java,
             valueClass = FlowActivityDto::class.java,
             consumerGroup = consumerGroup,

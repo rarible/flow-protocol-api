@@ -4,9 +4,9 @@ import java.net.URI
 
 class SwarmFlowNftIndexerApiServiceUriProvider(
     private val environment: String
-) : FlowNftIndexerApiServiceUriProvider {
+) : FlowApiServiceUriProvider {
 
-    override fun getUri(blockchain: String): URI {
+    override fun getUri(): URI {
         return URI.create("http://$environment-flow-indexer-backend-api:8080")
     }
 

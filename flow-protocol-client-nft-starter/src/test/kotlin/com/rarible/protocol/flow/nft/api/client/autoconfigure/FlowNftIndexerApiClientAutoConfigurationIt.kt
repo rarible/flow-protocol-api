@@ -1,8 +1,8 @@
 package com.rarible.protocol.flow.nft.api.client.autoconfigure
 
 import com.rarible.core.application.ApplicationEnvironmentInfo
+import com.rarible.protocol.flow.nft.api.client.FlowApiServiceUriProvider
 import com.rarible.protocol.flow.nft.api.client.FlowNftIndexerApiClientFactory
-import com.rarible.protocol.flow.nft.api.client.FlowNftIndexerApiServiceUriProvider
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -25,7 +25,7 @@ import org.springframework.context.annotation.Import
 class FlowNftIndexerApiClientAutoConfigurationIt {
 
     @Autowired
-    private lateinit var nftIndexerApiServiceUriProvider: FlowNftIndexerApiServiceUriProvider
+    private lateinit var nftIndexerApiServiceUriProvider: FlowApiServiceUriProvider
 
     @Autowired
     private lateinit var nftIndexerApiClientFactory: FlowNftIndexerApiClientFactory
@@ -41,14 +41,14 @@ class FlowNftIndexerApiClientAutoConfigurationIt {
 
         every { webClientCustomizer.customize(any()) } returns Unit
 
-        nftIndexerApiClientFactory.createNftItemApiClient("flow")
+        nftIndexerApiClientFactory.createNftItemApiClient()
 
         verify { webClientCustomizer.customize(any()) }
     }
 
     @Test
     fun `test default client uri`() {
-        val uri = nftIndexerApiServiceUriProvider.getUri("doesntmatter")
+        val uri = nftIndexerApiServiceUriProvider.getUri()
         assertThat(uri.toString()).isEqualTo("http://test-flow-indexer-backend-api:8080")
     }
 

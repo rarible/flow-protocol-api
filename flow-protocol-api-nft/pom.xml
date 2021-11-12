@@ -4,24 +4,29 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>flow-protocol-api-parent</artifactId>
-        <groupId>com.rarible.protocol</groupId>
+        <groupId>com.rarible.protocol.flow</groupId>
         <version>${revision}</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>flow-protocol-api-nft</artifactId>
     <packaging>jar</packaging>
-    <version>${project.parent.version}</version>
+
 
     <dependencies>
+        <!-- ============= Flow Protocol-API ============= -->
+        <dependency>
+            <groupId>com.rarible.protocol.flow</groupId>
+            <artifactId>flow-protocol-model-nft</artifactId>
+        </dependency>
+
+        <!-- =============== Rarible-core ================ -->
         <dependency>
             <groupId>com.rarible.core</groupId>
             <artifactId>rarible-core-logging</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.rarible.protocol</groupId>
-            <artifactId>flow-protocol-model-nft</artifactId>
-        </dependency>
+
+        <!-- ================== Spring ==================== -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
@@ -31,7 +36,7 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>com.rarible.protocol</groupId>
+                <groupId>com.rarible.codegen</groupId>
                 <artifactId>model-generator-maven-plugin</artifactId>
                 <configuration>
                     <generators>

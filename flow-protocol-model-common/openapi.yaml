@@ -216,6 +216,15 @@ components:
           $ref: "#/components/schemas/FlowAsset"
         price:
           $ref: "#/components/schemas/BigDecimal"
+        transactionHash:
+          type: string
+        blockHash:
+          type: string
+        blockNumber:
+          type: integer
+          format: int64
+        logIndex:
+          type: integer
 
     FlowNftOrderActivitySell:
       type: object
@@ -273,6 +282,15 @@ components:
           $ref: "#/components/schemas/FlowAsset"
         price:
           $ref: "#/components/schemas/BigDecimal"
+        transactionHash:
+          type: string
+        blockHash:
+          type: string
+        blockNumber:
+          type: integer
+          format: int64
+        logIndex:
+          type: integer
 
     FlowActivities:
       type: object

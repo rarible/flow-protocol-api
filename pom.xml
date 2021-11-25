@@ -35,7 +35,6 @@
 
     <properties>
         <revision>2.1.0</revision>
-
         <generator.kotlin>kotlin</generator.kotlin>
         <generator.package>com.rarible.protocol.dto</generator.package>
 

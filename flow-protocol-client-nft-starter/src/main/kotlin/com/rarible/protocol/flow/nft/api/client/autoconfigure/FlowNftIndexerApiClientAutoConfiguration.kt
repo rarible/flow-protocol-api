@@ -1,11 +1,11 @@
 package com.rarible.protocol.flow.nft.api.client.autoconfigure
 
 import com.rarible.core.application.ApplicationEnvironmentInfo
-import com.rarible.protocol.client.CompositeWebClientCustomizer
-import com.rarible.protocol.client.DefaultProtocolWebClientCustomizer
-import com.rarible.protocol.client.NoopWebClientCustomizer
+import com.rarible.protocol.flow.nft.api.client.CompositeWebClientCustomizer
+import com.rarible.protocol.flow.nft.api.client.DefaultFlowWebClientCustomizer
+import com.rarible.protocol.flow.nft.api.client.FlowApiServiceUriProvider
 import com.rarible.protocol.flow.nft.api.client.FlowNftIndexerApiClientFactory
-import com.rarible.protocol.flow.nft.api.client.FlowNftIndexerApiServiceUriProvider
+import com.rarible.protocol.flow.nft.api.client.NoopWebClientCustomizer
 import com.rarible.protocol.flow.nft.api.client.SwarmFlowNftIndexerApiServiceUriProvider
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
@@ -24,16 +24,16 @@ class FlowNftIndexerApiClientAutoConfiguration(
     private var webClientCustomizer: WebClientCustomizer = NoopWebClientCustomizer()
 
     @Bean
-    @ConditionalOnMissingBean(FlowNftIndexerApiServiceUriProvider::class)
-    fun flowNftIndexerApiServiceUriProvider(): FlowNftIndexerApiServiceUriProvider {
+    @ConditionalOnMissingBean(FlowApiServiceUriProvider::class)
+    fun flowNftIndexerApiServiceUriProvider(): FlowApiServiceUriProvider {
         return SwarmFlowNftIndexerApiServiceUriProvider(applicationEnvironmentInfo.name)
     }
 
     @Bean
     @ConditionalOnMissingBean(FlowNftIndexerApiClientFactory::class)
-    fun flowNftIndexerApiClientFactory(nftIndexerApiServiceUriProvider: FlowNftIndexerApiServiceUriProvider): FlowNftIndexerApiClientFactory {
+    fun flowNftIndexerApiClientFactory(nftIndexerApiServiceUriProvider: FlowApiServiceUriProvider): FlowNftIndexerApiClientFactory {
         val compositeWebClientCustomizer =
-            CompositeWebClientCustomizer(listOf(DefaultProtocolWebClientCustomizer(), webClientCustomizer))
+            CompositeWebClientCustomizer(listOf(DefaultFlowWebClientCustomizer(), webClientCustomizer))
         return FlowNftIndexerApiClientFactory(nftIndexerApiServiceUriProvider, compositeWebClientCustomizer)
     }
 }

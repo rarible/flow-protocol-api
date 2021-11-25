@@ -4,51 +4,53 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>flow-protocol-api-parent</artifactId>
-        <groupId>com.rarible.protocol</groupId>
+        <groupId>com.rarible.protocol.flow</groupId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>flow-api</artifactId>
     <packaging>jar</packaging>
-    <version>${project.parent.version}</version>
+
 
     <dependencies>
+        <!-- ============= Flow Protocol-API ============= -->
         <dependency>
-            <groupId>com.rarible.protocol</groupId>
+            <groupId>com.rarible.protocol.flow</groupId>
             <artifactId>flow-protocol-model-common</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.rarible.protocol</groupId>
+            <groupId>com.rarible.protocol.flow</groupId>
             <artifactId>flow-protocol-model-order</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.rarible.protocol</groupId>
+            <groupId>com.rarible.protocol.flow</groupId>
             <artifactId>flow-protocol-model-nft</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.rarible.protocol</groupId>
+            <groupId>com.rarible.protocol.flow</groupId>
             <artifactId>flow-protocol-api-nft</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.rarible.protocol</groupId>
+            <groupId>com.rarible.protocol.flow</groupId>
             <artifactId>flow-protocol-api-order</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.rarible.protocol</groupId>
+            <groupId>com.rarible.protocol.flow</groupId>
             <artifactId>flow-protocol-api-nft-order</artifactId>
         </dependency>
+
+        <!-- ================== Spring ==================== -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>com.rarible.protocol</groupId>
+                <groupId>com.rarible.codegen</groupId>
                 <artifactId>model-generator-maven-plugin</artifactId>
                 <configuration>
                     <schema>

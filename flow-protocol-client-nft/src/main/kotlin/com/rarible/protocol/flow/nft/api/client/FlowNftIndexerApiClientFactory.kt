@@ -1,43 +1,40 @@
 package com.rarible.protocol.flow.nft.api.client
 
-import com.rarible.protocol.client.AbstractApiClientFactory
-import com.rarible.protocol.client.ApiServiceUriProvider
 import com.rarible.protocol.flow.nft.api.ApiClient
 import org.springframework.boot.web.reactive.function.client.WebClientCustomizer
 
 open class FlowNftIndexerApiClientFactory(
-    uriProvider: ApiServiceUriProvider,
-    webClientCustomizer: WebClientCustomizer
-) : AbstractApiClientFactory(uriProvider, webClientCustomizer) {
+    private val uriProvider: FlowApiServiceUriProvider,
+    private val webClientCustomizer: WebClientCustomizer
+) {
 
-
-    fun createNftItemApiClient(blockchain: String): FlowNftItemControllerApi {
-        return FlowNftItemControllerApi(createApiClient(blockchain))
+    fun createNftItemApiClient(): FlowNftItemControllerApi {
+        return FlowNftItemControllerApi(createApiClient())
     }
 
-    fun createNftOwnershipApiClient(blockchain: String): FlowNftOwnershipControllerApi {
-        return FlowNftOwnershipControllerApi(createApiClient(blockchain))
+    fun createNftOwnershipApiClient(): FlowNftOwnershipControllerApi {
+        return FlowNftOwnershipControllerApi(createApiClient())
     }
 
-    fun createNftOrderApiClient(blockchain: String): FlowOrderControllerApi {
-        return FlowOrderControllerApi(createApiClient(blockchain))
+    fun createNftOrderApiClient(): FlowOrderControllerApi {
+        return FlowOrderControllerApi(createApiClient())
     }
 
-    fun createNftCollectionApiClient(blockchain: String): FlowNftCollectionControllerApi {
-        return FlowNftCollectionControllerApi(createApiClient(blockchain))
+    fun createNftCollectionApiClient(): FlowNftCollectionControllerApi {
+        return FlowNftCollectionControllerApi(createApiClient())
     }
 
-    fun createNftOrderActivityApiClient(blockchain: String): FlowNftOrderActivityControllerApi {
-        return FlowNftOrderActivityControllerApi(createApiClient(blockchain))
+    fun createNftOrderActivityApiClient(): FlowNftOrderActivityControllerApi {
+        return FlowNftOrderActivityControllerApi(createApiClient())
     }
 
-    fun createCryptoApiClient(blockchain: String): FlowNftCryptoControllerApi {
-        return FlowNftCryptoControllerApi(createApiClient(blockchain))
+    fun createCryptoApiClient(): FlowNftCryptoControllerApi {
+        return FlowNftCryptoControllerApi(createApiClient())
     }
 
-    private fun createApiClient(blockchain: String): ApiClient {
+    private fun createApiClient(): ApiClient {
         return ApiClient(webClientCustomizer)
-            .setBasePath(getBasePath(blockchain))
+            .setBasePath(uriProvider.getUri().toASCIIString())
     }
 }
 

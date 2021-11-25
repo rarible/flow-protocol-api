@@ -4,39 +4,35 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>flow-protocol-api-parent</artifactId>
-        <groupId>com.rarible.protocol</groupId>
+        <groupId>com.rarible.protocol.flow</groupId>
         <version>${revision}</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>flow-protocol-client-nft-starter</artifactId>
     <packaging>jar</packaging>
-    <version>${project.parent.version}</version>
 
-    <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-    </build>
 
     <dependencies>
+        <!-- ============= Flow Protocol-API ============= -->
         <dependency>
-            <groupId>com.rarible.protocol</groupId>
+            <groupId>com.rarible.protocol.flow</groupId>
             <artifactId>flow-protocol-client-nft</artifactId>
         </dependency>
+
+        <!-- =============== Rarible-core ================ -->
         <dependency>
             <groupId>com.rarible.core</groupId>
             <artifactId>rarible-core-application</artifactId>
         </dependency>
 
+        <!-- ================== Spring ==================== -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
 
+        <!-- =================== Test ===================== -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

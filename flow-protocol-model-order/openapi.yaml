@@ -53,8 +53,6 @@ components:
           format: date-time
         amount:
           $ref: "#/components/schemas/BigDecimal"
-        offeredNftId:
-          type: string
         priceUsd:
           $ref: "#/components/schemas/BigDecimal"
         makeStock:

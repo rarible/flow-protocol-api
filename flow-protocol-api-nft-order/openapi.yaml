@@ -98,6 +98,8 @@ paths:
                 - CANCEL_LIST
                 - BID
                 - CANCEL_BID
+                - MAKE_BID
+                - GET_BID
         - name: user
           in: query
           required: true

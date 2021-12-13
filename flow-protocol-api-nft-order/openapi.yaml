@@ -21,9 +21,11 @@ paths:
                 - TRANSFER
                 - MINT
                 - BURN
-                - LIST
                 - SELL
+                - LIST
                 - CANCEL_LIST
+                - BID
+                - CANCEL_BID
         - name: contract
           in: query
           required: true
@@ -90,10 +92,14 @@ paths:
                 - TRANSFER_TO
                 - MINT
                 - BURN
-                - LIST
-                - BUY
                 - SELL
+                - BUY
+                - LIST
                 - CANCEL_LIST
+                - BID
+                - CANCEL_BID
+                - MAKE_BID
+                - GET_BID
         - name: user
           in: query
           required: true
@@ -168,9 +174,11 @@ paths:
                 - TRANSFER
                 - MINT
                 - BURN
-                - LIST
                 - SELL
+                - LIST
                 - CANCEL_LIST
+                - BID
+                - CANCEL_BID
         - name: continuation
           in: query
           required: false
@@ -353,9 +361,11 @@ paths:
                 - TRANSFER
                 - MINT
                 - BURN
-                - LIST
                 - SELL
+                - LIST
                 - CANCEL_LIST
+                - BID
+                - CANCEL_BID
         - name: collection
           in: query
           required: true

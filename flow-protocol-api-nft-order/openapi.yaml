@@ -26,6 +26,7 @@ paths:
                 - CANCEL_LIST
                 - BID
                 - CANCEL_BID
+                - ACCEPT_BID
         - name: contract
           in: query
           required: true
@@ -178,6 +179,7 @@ paths:
                 - LIST
                 - CANCEL_LIST
                 - BID
+                - ACCEPT_BID
                 - CANCEL_BID
         - name: continuation
           in: query
@@ -366,6 +368,7 @@ paths:
                 - CANCEL_LIST
                 - BID
                 - CANCEL_BID
+                - ACCEPT_BID
         - name: collection
           in: query
           required: true

@@ -189,8 +189,44 @@ components:
       type: object
       oneOf:
         - $ref: "#/components/schemas/FlowNftOrderActivityList"
+        - $ref: "#/components/schemas/FlowNftOrderActivityBid"
         - $ref: "#/components/schemas/FlowNftOrderActivitySell"
         - $ref: "#/components/schemas/FlowNftOrderActivityCancelList"
+        - $ref: "#/components/schemas/FlowNftOrderActivityCancelBid"
+
+    FlowNftOrderActivityBid:
+      type: object
+      required:
+        - "@type"
+        - hash
+        - maker
+        - make
+        - take
+        - price
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "bid"
+        hash:
+          type: string
+        maker:
+          $ref: "#/components/schemas/FlowAddress"
+        make:
+          $ref: "#/components/schemas/FlowAsset"
+        take:
+          $ref: "#/components/schemas/FlowAsset"
+        price:
+          $ref: "#/components/schemas/BigDecimal"
+        transactionHash:
+          type: string
+        blockHash:
+          type: string
+        blockNumber:
+          type: integer
+          format: int64
+        logIndex:
+          type: integer
 
     FlowNftOrderActivityList:
       type: object
@@ -246,6 +282,40 @@ components:
           $ref: "#/components/schemas/FlowOrderActivityMatchSide"
         right:
           $ref: "#/components/schemas/FlowOrderActivityMatchSide"
+        price:
+          $ref: "#/components/schemas/BigDecimal"
+        transactionHash:
+          type: string
+        blockHash:
+          type: string
+        blockNumber:
+          type: integer
+          format: int64
+        logIndex:
+          type: integer
+
+    FlowNftOrderActivityCancelBid:
+      type: object
+      required:
+        - "@type"
+        - hash
+        - maker
+        - make
+        - take
+        - price
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "cancel_bid"
+        hash:
+          type: string
+        maker:
+          $ref: "#/components/schemas/FlowAddress"
+        make:
+          $ref: "#/components/schemas/FlowAsset"
+        take:
+          $ref: "#/components/schemas/FlowAsset"
         price:
           $ref: "#/components/schemas/BigDecimal"
         transactionHash:

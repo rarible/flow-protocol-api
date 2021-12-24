@@ -425,6 +425,7 @@ paths:
       tags:
         - flow-order-controller
       operationId: getOrderBidsByItem
+      deprecated: true
       parameters:
         - name: contract
           in: query
@@ -577,16 +578,16 @@ paths:
       parameters:
         - name: startDate
           in: query
-          required: true
+          required: false
           schema:
-            type: integer
-            format: int64
+            type: string
+            format: date-time
         - name: endDate
           in: query
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
+            format: date-time
         - name: size
           in: query
           required: false

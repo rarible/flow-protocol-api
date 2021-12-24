@@ -578,16 +578,16 @@ paths:
       parameters:
         - name: startDate
           in: query
-          required: false
+          required: true
           schema:
-            type: string
-            format: date-time
+            type: integer
+            format: int64
         - name: endDate
           in: query
           required: true
           schema:
-            type: string
-            format: date-time
+            type: integer
+            format: int64
         - name: size
           in: query
           required: false

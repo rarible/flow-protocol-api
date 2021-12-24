@@ -425,6 +425,7 @@ paths:
       tags:
         - flow-order-controller
       operationId: getOrderBidsByItem
+      deprecated: true
       parameters:
         - name: contract
           in: query

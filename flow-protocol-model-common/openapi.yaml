@@ -301,6 +301,7 @@ components:
         - hash
         - maker
         - make
+        - take
         - price
       properties:
         "@type":
@@ -334,6 +335,7 @@ components:
         - hash
         - maker
         - make
+        - take
         - price
       properties:
         "@type":

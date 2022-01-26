@@ -776,6 +776,12 @@ paths:
           required: true
           schema:
             $ref: "#/components/schemas/FlowAddress"
+        - name: "status"
+          in: "query"
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/FlowAuctionStatus"
         - name: "continuation"
           in: "query"
           schema:
@@ -822,7 +828,9 @@ paths:
         - name: status
           in: "query"
           schema:
-            $ref: "#/components/schemas/FlowAuctionStatus"
+            type: array
+            items:
+              $ref: "#/components/schemas/FlowAuctionStatus"
         - name: currencyId
           in: "query"
           schema:
@@ -863,7 +871,9 @@ paths:
         - name: "status"
           in: "query"
           schema:
-            $ref: "#/components/schemas/FlowAuctionStatus"
+            type: array
+            items:
+              $ref: "#/components/schemas/FlowAuctionStatus"
         - name: "continuation"
           in: "query"
           schema:

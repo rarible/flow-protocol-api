@@ -20,6 +20,10 @@ open class FlowNftIndexerApiClientFactory(
         return FlowOrderControllerApi(createApiClient())
     }
 
+    fun createBidApiClient(): FlowBidOrderControllerApi {
+        return FlowBidOrderControllerApi(createApiClient())
+    }
+
     fun createNftCollectionApiClient(): FlowNftCollectionControllerApi {
         return FlowNftCollectionControllerApi(createApiClient())
     }

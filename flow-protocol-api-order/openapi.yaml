@@ -368,7 +368,7 @@ paths:
   "/v0.1/orders/bids/byMaker":
     get:
       tags:
-        - flow-order-controller
+        - flow-bid-order-controller
       operationId: getOrderBidsByMaker
       parameters:
         - name: maker
@@ -420,62 +420,10 @@ paths:
         '500':
           $ref: "#/components/responses/ServerError"
 
-  "/v0.1/orders/bids/byItem":
-    get:
-      tags:
-        - flow-order-controller
-      operationId: getOrderBidsByItem
-      deprecated: true
-      parameters:
-        - name: contract
-          in: query
-          required: true
-          schema:
-            $ref: "#/components/schemas/FlowAddress"
-        - name: tokenId
-          in: query
-          required: true
-          schema:
-            $ref: "#/components/schemas/BigInteger"
-        - name: maker
-          in: query
-          required: false
-          schema:
-            $ref: "#/components/schemas/FlowAddress"
-        - name: origin
-          in: query
-          required: false
-          schema:
-            $ref: "#/components/schemas/FlowAddress"
-        - name: currencyAddress
-          in: query
-          required: false
-          schema:
-            type: string
-        - name: continuation
-          in: query
-          required: false
-          schema:
-            type: string
-        - name: size
-          in: query
-          required: false
-          schema:
-            minimum: 1
-            type: integer
-            format: int32
-      responses:
-        '200':
-          $ref: "#/components/responses/FlowOrdersPage"
-        '400':
-          $ref: "#/components/responses/BadRequest"
-        '500':
-          $ref: "#/components/responses/ServerError"
-
   "/v0.1/bids/byItem":
     get:
       tags:
-        - flow-order-controller
+        - flow-bid-order-controller
       operationId: getBidsByItem
       parameters:
         - name: contract
@@ -499,7 +447,9 @@ paths:
           in: query
           required: false
           schema:
-            $ref: "#/components/schemas/FlowAddress"
+            type: array
+            items:
+              $ref: "#/components/schemas/FlowAddress"
         - name: origin
           in: query
           required: false
@@ -545,7 +495,7 @@ paths:
   "/v0.1/bids/currencies/{itemId}":
     get:
       tags:
-        - flow-order-controller
+        - flow-bid-order-controller
       operationId: getBidCurrencies
       parameters:
         - name: itemId

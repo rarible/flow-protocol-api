@@ -177,6 +177,7 @@ components:
       required:
         - from
         - "@type"
+        - purchased
       properties:
         "@type":
           type: string
@@ -184,6 +185,8 @@ components:
             - "transfer"
         from:
           $ref: "#/components/schemas/FlowAddress"
+        purchased:
+          type: boolean
 
     FlowNftOrderActivity:
       type: object

@@ -296,6 +296,8 @@ components:
           format: int64
         logIndex:
           type: integer
+        platform:
+          $ref: "#/components/schemas/FlowOrderPlatform"
 
     FlowNftOrderActivityCancelBid:
       type: object
@@ -390,6 +392,13 @@ components:
           $ref: "#/components/schemas/FlowAddress"
         value:
           $ref: "#/components/schemas/BigDecimal"
+
+    FlowOrderPlatform:
+      type: string
+      enum:
+        - RARIBLE
+        - OTHER
+
 
 
   responses:

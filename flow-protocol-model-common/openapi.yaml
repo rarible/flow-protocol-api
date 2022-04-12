@@ -393,6 +393,17 @@ components:
         value:
           $ref: "#/components/schemas/BigDecimal"
 
+    NftActivitiesByIdRequest:
+      type: object
+      required:
+        - ids
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
+            description: "List of activity ids"
+
     FlowOrderPlatform:
       type: string
       enum:

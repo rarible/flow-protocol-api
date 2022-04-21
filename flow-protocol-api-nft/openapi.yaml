@@ -431,6 +431,33 @@ paths:
               schema:
                 "$ref": "#/components/schemas/FlowApiError"
 
+  "/v0.1/collections/byIds":
+    get:
+      tags:
+        - flow-nft-collection-controller
+      operationId: searchNftCollectionsByIds
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowNftCollections"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+
   "/v0.1/crypto/verify":
     get:
       tags:

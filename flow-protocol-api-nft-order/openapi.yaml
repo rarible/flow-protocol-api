@@ -284,3 +284,34 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/order/activities/byId":
+    post:
+      tags:
+        - flow-nft-order-activity-controller
+      operationId: getNftOrderActivitiesById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NftActivitiesByIdRequest"
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FlowActivities"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"

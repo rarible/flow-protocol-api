@@ -65,6 +65,8 @@ components:
           format: date-time
         status:
           $ref: "#/components/schemas/FlowOrderStatus"
+        platform:
+          $ref: "#/components/schemas/FlowOrderPlatform"
 
     FlowOrderEvent:
       type: object

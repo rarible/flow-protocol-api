@@ -3,6 +3,7 @@ package com.rarible.protocol.flow.nft.api.subscriber
 import com.rarible.core.kafka.RaribleKafkaConsumer
 import com.rarible.core.kafka.json.JsonDeserializer
 import com.rarible.protocol.dto.*
+import org.apache.kafka.clients.consumer.OffsetResetStrategy
 import java.util.*
 
 class FlowNftIndexerEventsConsumerFactory(
@@ -20,7 +21,8 @@ class FlowNftIndexerEventsConsumerFactory(
             valueClass = FlowNftItemEventDto::class.java,
             consumerGroup = consumerGroup,
             defaultTopic = FlowNftItemEventTopicProvider.getTopic(environment),
-            bootstrapServers = brokerReplicaSet
+            bootstrapServers = brokerReplicaSet,
+            offsetResetStrategy = getOffsetResetStrategy()
         )
     }
 
@@ -31,7 +33,8 @@ class FlowNftIndexerEventsConsumerFactory(
             valueClass = FlowOwnershipEventDto::class.java,
             consumerGroup = consumerGroup,
             defaultTopic = FlowNftOwnershipEventTopicProvider.getTopic(environment),
-            bootstrapServers = brokerReplicaSet
+            bootstrapServers = brokerReplicaSet,
+            offsetResetStrategy = getOffsetResetStrategy()
         )
     }
 
@@ -42,7 +45,8 @@ class FlowNftIndexerEventsConsumerFactory(
             valueClass = FlowOrderEventDto::class.java,
             consumerGroup = consumerGroup,
             defaultTopic = FlowOrderEventTopicProvider.getTopic(environment),
-            bootstrapServers = brokerReplicaSet
+            bootstrapServers = brokerReplicaSet,
+            offsetResetStrategy = getOffsetResetStrategy()
         )
     }
 
@@ -53,8 +57,12 @@ class FlowNftIndexerEventsConsumerFactory(
             valueClass = FlowActivityDto::class.java,
             consumerGroup = consumerGroup,
             defaultTopic = FlowActivityEventTopicProvider.getTopic(environment),
-            bootstrapServers = brokerReplicaSet
+            bootstrapServers = brokerReplicaSet,
+            offsetResetStrategy = getOffsetResetStrategy()
         )
     }
 
+    private fun getOffsetResetStrategy(): OffsetResetStrategy {
+        return OffsetResetStrategy.EARLIEST
+    }
 }

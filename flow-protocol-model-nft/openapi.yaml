@@ -357,3 +357,13 @@ components:
           items:
             $ref: "#/components/schemas/FlowNftCollection"
 
+    FlowItemIds:
+      type: object
+      required:
+        - ids
+      properties:
+        ids:
+          type: array
+          description: "List of the item id"
+          items:
+            type: string

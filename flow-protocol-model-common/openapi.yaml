@@ -117,6 +117,19 @@ components:
       oneOf:
         - $ref: "#/components/schemas/FlowNftActivity"
         - $ref: "#/components/schemas/FlowNftOrderActivity"
+        - $ref: "#/components/schemas/FlowAuctionActivity"
+        - $ref: "#/components/schemas/DummyActivity"
+
+
+    DummyActivity:
+      type: object
+      required:
+        - "@type"
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "dummy"
 
     FlowNftActivity:
       type: object
@@ -392,6 +405,281 @@ components:
           $ref: "#/components/schemas/FlowAddress"
         value:
           $ref: "#/components/schemas/BigDecimal"
+
+    FlowAuctionActivity:
+      type: object
+      required:
+        - id
+        - date
+        - source
+        - auction
+      properties:
+        id:
+          type: string
+        date:
+          type: string
+          format: date-time
+        source:
+          type: string
+          enum:
+            - RARIBLE
+        auction:
+          $ref: "#/components/schemas/FlowAuction"
+      oneOf:
+        - $ref: "#/components/schemas/FlowAuctionActivityOpen"
+        - $ref: "#/components/schemas/FlowAuctionActivityBid"
+        - $ref: "#/components/schemas/FlowAuctionActivityFinish"
+        - $ref: "#/components/schemas/FlowAuctionActivityCancel"
+        - $ref: "#/components/schemas/FlowAuctionActivityStart"
+        - $ref: "#/components/schemas/FlowAuctionActivityEnd"
+
+    FlowAuctionActivityOpen:
+      type: object
+      required:
+        - "@type"
+        - transactionHash
+        - blockHash
+        - blockNumber
+        - logIndex
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "auction_open"
+        transactionHash:
+          type: string
+        blockHash:
+          type: string
+        blockNumber:
+          type: integer
+          format: int64
+        logIndex:
+          type: integer
+
+    FlowAuctionActivityBid:
+      type: object
+      required:
+        - "@type"
+        - bid
+        - transactionHash
+        - blockHash
+        - blockNumber
+        - logIndex
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "auction_bid"
+        bid:
+          $ref: "#/components/schemas/FlowAuctionBid"
+        transactionHash:
+          type: string
+        blockHash:
+          type: string
+        blockNumber:
+          type: integer
+          format: int64
+        logIndex:
+          type: integer
+
+    FlowAuctionActivityFinish:
+      type: object
+      required:
+        - "@type"
+        - transactionHash
+        - blockHash
+        - blockNumber
+        - logIndex
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "auction_finish"
+        transactionHash:
+          type: string
+        blockHash:
+          type: string
+        blockNumber:
+          type: integer
+          format: int64
+        logIndex:
+          type: integer
+
+    FlowAuctionActivityCancel:
+      type: object
+      required:
+        - "@type"
+        - transactionHash
+        - blockHash
+        - blockNumber
+        - logIndex
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "auction_cancel"
+        transactionHash:
+          type: string
+        blockHash:
+          type: string
+        blockNumber:
+          type: integer
+          format: int64
+        logIndex:
+          type: integer
+
+    FlowAuctionActivityStart:
+      type: object
+      required:
+        - "@type"
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "auction_start"
+
+    FlowAuctionActivityEnd:
+      type: object
+      required:
+        - "@type"
+      properties:
+        "@type":
+          type: string
+          enum:
+            - "auction_end"
+
+    FlowAuction:
+      type: object
+      required:
+        - type
+        - seller
+        - sell
+        - buy
+        - minimalStep
+        - minimalPrice
+        - createdAt
+        - lastUpdateAt
+        - status
+        - id
+      properties:
+        seller:
+          $ref: "#/components/schemas/FlowAddress"
+        sell:
+          $ref: "#/components/schemas/FlowAsset"
+        buy:
+          $ref: "#/components/schemas/FlowAsset"
+        minimalStep:
+          $ref: "#/components/schemas/BigDecimal"
+        minimalPrice:
+          $ref: "#/components/schemas/BigDecimal"
+        createdAt:
+          type: string
+          format: date-time
+        lastUpdatedAt:
+          type: string
+          format: date-time
+        status:
+          $ref: "#/components/schemas/FlowAuctionStatus"
+        id:
+          type: integer
+          format: int64
+        buyPrice:
+          $ref: "#/components/schemas/BigDecimal"
+        buyPriceUsd:
+          $ref: "#/components/schemas/BigDecimal"
+      oneOf:
+        - $ref: "#/components/schemas/EnglishV1FlowAuction"
+
+    EnglishV1FlowAuction:
+      type: object
+      required:
+        - startTime
+      properties:
+        type:
+          type: string
+          enum:
+            - "RARIBLE_AUCTION_V1"
+        startTime:
+          type: string
+          format: date-time
+        buyoutPrice:
+          $ref: "#/components/schemas/BigDecimal"
+        payouts:
+          type: array
+          items:
+            $ref: "#/components/schemas/PayInfo"
+        originalFees:
+          type: array
+          items:
+            $ref: "#/components/schemas/PayInfo"
+        duration:
+          type: integer
+          format: int64
+        ongoing:
+          type: boolean
+        endTime:
+          type: string
+          format: date-time
+        contract:
+          type: string
+
+    FlowAuctionStatus:
+      type: "string"
+      enum:
+        - "INACTIVE"
+        - "ACTIVE"
+        - "CANCELLED"
+        - "FINISHED"
+
+    FlowAuctionSort:
+      type: string
+      enum:
+        - "LAST_UPDATE_ASC"
+        - "LAST_UPDATE_DESC"
+        - "BUY_PRICE_ASC"
+
+    FlowAuctionBid:
+      type: object
+      properties:
+        address:
+          $ref: "#/components/schemas/FlowAddress"
+        amount:
+          $ref: "#/components/schemas/BigDecimal"
+
+    FlowAuctionBidsPagination:
+      type: object
+      required:
+        - bids
+      properties:
+        bids:
+          type: array
+          items:
+            $ref: "#/components/schemas/FlowAuctionBid"
+        continuation:
+          type: string
+
+    FlowAuctionsPagination:
+      type: object
+      required:
+        - auctions
+      properties:
+        auctions:
+          type: array
+          items:
+            $ref: "#/components/schemas/FlowAuction"
+        continuation:
+          type: string
+
+    FlowAuctionIds:
+      type: object
+      required:
+        - ids
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+            format: int64
 
     NftActivitiesByIdRequest:
       type: object

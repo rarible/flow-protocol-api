@@ -73,6 +73,33 @@ paths:
               schema:
                 $ref: '#/components/schemas/FlowNftItem'
 
+  /v0.1/items/byIds:
+    post:
+      tags:
+        - flow-nft-item-controller
+      description: "Returns Items by Ids"
+      operationId: getItemByIds
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlowItemIds"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FlowNftItems"
+        '404':
+          $ref: "#/components/responses/EntityNotFound"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
+
   '/v0.1/items/{itemId}/royalty':
     get:
       tags:

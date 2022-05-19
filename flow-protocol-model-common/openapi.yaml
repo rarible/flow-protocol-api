@@ -404,12 +404,22 @@ components:
             type: string
             description: "List of activity ids"
 
+    NftOwnershipsByIdRequest:
+      type: object
+      required:
+        - ids
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
+            description: "List of ownerships ids"
+
     FlowOrderPlatform:
       type: string
       enum:
         - RARIBLE
         - OTHER
-
 
 
   responses:

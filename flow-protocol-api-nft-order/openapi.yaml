@@ -291,6 +291,16 @@ paths:
         - flow-nft-order-activity-controller
       operationId: getNftOrderActivitiesByItemAndOwner
       parameters:
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - TRANSFER
+                - MINT
         - name: contract
           in: query
           required: true

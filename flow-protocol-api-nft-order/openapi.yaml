@@ -353,6 +353,143 @@ paths:
               schema:
                 "$ref": "#/components/schemas/FlowApiError"
 
+  "/v0.1/order/activities/byItemAndOwner":
+    get:
+      tags:
+        - flow-nft-order-activity-controller
+      operationId: getNftOrderActivitiesByItemAndOwner
+      parameters:
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - TRANSFER
+                - MINT
+        - name: contract
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: tokenId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: owner
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: continuation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - LATEST_FIRST
+              - EARLIEST_FIRST
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowActivities"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/order/activities/sync":
+    get:
+      tags:
+        - flow-nft-order-activity-controller
+      operationId: getNftOrderActivitiesSync
+      parameters:
+        - name: type
+          description: "Activity type"
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - TRANSFER
+                - MINT
+                - BURN
+                - SELL
+                - LIST
+                - CANCEL_LIST
+                - BID
+                - CANCEL_BID
+        - name: continuation
+          description: "Continuation token from the previous response"
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: The number of items to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          description: Sorting by data update time
+          required: false
+          schema:
+            type: string
+            enum:
+              - LATEST_FIRST
+              - EARLIEST_FIRST
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FlowActivities"
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FlowActivities"
+
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FlowActivities"
+
   "/v0.1/order/activities/byId":
     post:
       tags:

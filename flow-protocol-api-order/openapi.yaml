@@ -305,6 +305,43 @@ paths:
         '500':
           $ref: "#/components/responses/ServerError"
 
+  "/v0.1/orders/sync":
+    get:
+      tags:
+        - flow-order-controller
+      operationId: getOrdersSync
+      parameters:
+        - name: continuation
+          description: "Continuation token to paginate items search result"
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: size
+          description: "The number of orders to return"
+          in: query
+          required: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - UPDATED_AT_DESC
+              - UPDATED_AT_ASC
+            default: 'UPDATED_AT_DESC'
+      responses:
+        '200':
+          $ref: "#/components/responses/FlowOrdersPage"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '500':
+          $ref: "#/components/responses/ServerError"
+
 
   "/v0.1/orders/sell":
     get:

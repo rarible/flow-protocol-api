@@ -108,12 +108,19 @@ components:
       required:
         - id
         - date
+        - updatedAt
       properties:
         id:
           type: string
+          description: "Activity identifier"
         date:
           type: string
           format: date-time
+          description: "Date of activity on chain"
+        updatedAt:
+          type: string
+          format: date-time
+          description: "Date of activity update in DB"
       oneOf:
         - $ref: "#/components/schemas/FlowNftActivity"
         - $ref: "#/components/schemas/FlowNftOrderActivity"

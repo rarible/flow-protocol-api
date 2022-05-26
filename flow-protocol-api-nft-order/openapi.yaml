@@ -362,6 +362,23 @@ paths:
         - flow-nft-order-activity-controller
       operationId: getNftOrderActivitiesSync
       parameters:
+        - name: type
+          description: "Activity type"
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - TRANSFER
+                - MINT
+                - BURN
+                - SELL
+                - LIST
+                - CANCEL_LIST
+                - BID
+                - CANCEL_BID
         - name: continuation
           description: "Continuation token from the previous response"
           in: query

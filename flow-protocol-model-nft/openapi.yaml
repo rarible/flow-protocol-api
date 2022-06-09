@@ -167,6 +167,8 @@ components:
           type: "array"
           items:
             type: "string"
+        originalMetaUri:
+          type: string
         raw:
           $ref: "#/components/schemas/Binary"
       required:

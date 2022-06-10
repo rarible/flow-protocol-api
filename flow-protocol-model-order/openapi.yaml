@@ -60,7 +60,7 @@ components:
         priceUsd:
           $ref: "#/components/schemas/BigDecimal"
         makeStock:
-          $ref: "#/components/schemas/BigInteger"
+          $ref: "#/components/schemas/BigDecimal"
         start:
           type: string
           format: date-time

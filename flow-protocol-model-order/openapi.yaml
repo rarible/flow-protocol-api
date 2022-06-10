@@ -22,6 +22,7 @@ components:
         - cancelled
         - createdAt
         - lastUpdateAt
+        - dbUpdatedAt
         - makeStock
       properties:
         id:
@@ -49,6 +50,9 @@ components:
           type: string
           format: date-time
         lastUpdateAt:
+          type: string
+          format: date-time
+        dbUpdatedAt:
           type: string
           format: date-time
         amount:

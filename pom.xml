@@ -34,7 +34,7 @@
     </distributionManagement>
 
     <properties>
-        <revision>2.3.16</revision>
+        <revision>2.3.17</revision>
         <generator.kotlin>kotlin</generator.kotlin>
         <generator.package>com.rarible.protocol.dto</generator.package>
 

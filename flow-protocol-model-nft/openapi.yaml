@@ -7,7 +7,7 @@ paths: {}
 components:
   schemas:
 
-    MetaAttribute:
+    FlowMetaAttribute:
       type: "object"
       properties:
         key:
@@ -21,7 +21,7 @@ components:
       required:
         - "key"
 
-    MetaContent:
+    FlowMetaContent:
       type: "object"
       properties:
         contentType:
@@ -31,12 +31,12 @@ components:
         attributes:
           type: "array"
           items:
-            $ref: "#/components/schemas/MetaAttribute"
+            $ref: "#/components/schemas/FlowMetaAttribute"
       required:
         - "contentType"
         - "url"
 
-    MetaContentItem:
+    FlowMetaContentItem:
       type: object
       properties:
         fileName:
@@ -58,14 +58,14 @@ components:
         - url
         - representation
       oneOf:
-        - $ref: "#/components/schemas/ImageContent"
-        - $ref: "#/components/schemas/VideoContent"
-        - $ref: "#/components/schemas/AudioContent"
-        - $ref: "#/components/schemas/Model3dContent"
-        - $ref: "#/components/schemas/HtmlContent"
-        - $ref: "#/components/schemas/UnknownContent"
+        - $ref: "#/components/schemas/FlowImageContent"
+        - $ref: "#/components/schemas/FlowVideoContent"
+        - $ref: "#/components/schemas/FlowAudioContent"
+        - $ref: "#/components/schemas/FlowModel3dContent"
+        - $ref: "#/components/schemas/FlowHtmlContent"
+        - $ref: "#/components/schemas/FlowUnknownContent"
 
-    ImageContent:
+    FlowImageContent:
       type: object
       properties:
         "@type":
@@ -77,7 +77,7 @@ components:
         height:
           type: integer
 
-    VideoContent:
+    FlowVideoContent:
       type: object
       properties:
         "@type":
@@ -89,7 +89,7 @@ components:
         height:
           type: integer
 
-    AudioContent:
+    FlowAudioContent:
       type: object
       properties:
         "@type":
@@ -97,7 +97,7 @@ components:
           enum:
             - AUDIO
 
-    Model3dContent:
+    FlowModel3dContent:
       type: object
       properties:
         "@type":
@@ -105,7 +105,7 @@ components:
           enum:
             - MODEL_3D
 
-    HtmlContent:
+    FlowHtmlContent:
       type: object
       properties:
         "@type":
@@ -113,7 +113,7 @@ components:
           enum:
             - HTML
 
-    UnknownContent:
+    FlowUnknownContent:
       type: object
       properties:
         "@type":
@@ -121,7 +121,7 @@ components:
           enum:
             - UNKNOWN
 
-    Meta:
+    FlowMeta:
       type: "object"
       properties:
         name:
@@ -133,7 +133,7 @@ components:
         attributes:
           type: "array"
           items:
-            $ref: "#/components/schemas/MetaAttribute"
+            $ref: "#/components/schemas/FlowMetaAttribute"
         createdAt:
           type: string
           format: date-time
@@ -161,7 +161,7 @@ components:
           type: array
           description: "NFT content information"
           items:
-            $ref: "#/components/schemas/MetaContentItem"
+            $ref: "#/components/schemas/FlowMetaContentItem"
         contents:
           deprecated: true
           type: "array"
@@ -229,7 +229,7 @@ components:
         metaUrl:
           type: string
         meta:
-          $ref: "#/components/schemas/Meta"
+          $ref: "#/components/schemas/FlowMeta"
         mintedAt:
           type: "string"
           format: "date-time"

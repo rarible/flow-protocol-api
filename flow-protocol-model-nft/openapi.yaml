@@ -228,8 +228,6 @@ components:
             $ref: "#/components/schemas/FlowRoyalty"
         metaUrl:
           type: string
-        meta:
-          $ref: "#/components/schemas/FlowMeta"
         mintedAt:
           type: "string"
           format: "date-time"

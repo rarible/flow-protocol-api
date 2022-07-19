@@ -663,6 +663,221 @@ paths:
                 items:
                   "$ref": "#/components/schemas/FlowAggregationData"
 
+  "/v0.1/auctions/{id}":
+    get:
+      tags:
+        - "flow-auction-controller"
+      operationId: "getAuctionById"
+      description: "Return auction by id"
+      parameters:
+        - name: "id"
+          description: "Auction ID"
+          in: "path"
+          required: true
+          schema:
+            type: integer
+            format: int64
+          example: "24338552"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FlowAuction"
+        "404":
+          $ref: "#/components/responses/EntityNotFound"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/ServerError"
+
+  "/v0.1/auctions/byIds":
+    post:
+      tags:
+        - "flow-auction-controller"
+      operationId: "getAuctionsByIds"
+      description: "Returns all auctions by auction id's"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlowAuctionIds"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FlowAuction"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/ServerError"
+
+  "/v0.1/auctions/{id}/bids":
+    get:
+      tags:
+        - "flow-auction-controller"
+      operationId: "getAuctionBidsById"
+      description: "Returns auction bids by the auction id"
+      parameters:
+        - name: "id"
+          description: "Auction ID"
+          in: "path"
+          required: true
+          schema:
+            type: integer
+            format: int64
+          example: "24338552"
+        - name: "continuation"
+          description: "Continuation token from the previous response"
+          in: "query"
+          schema:
+            type: string
+        - name: "size"
+          description: "The number of auction bids to return"
+          in: "query"
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          $ref: "#/components/responses/FlowAuctionBidsPage"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/ServerError"
+  "/v0.1/auctions/bySeller":
+    get:
+      tags:
+        - "flow-auction-controller"
+      operationId: "getAuctionsBySeller"
+      description: "Returns all auctions by seller"
+      parameters:
+        - name: "seller"
+          in: "query"
+          required: true
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: "status"
+          in: "query"
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/FlowAuctionStatus"
+        - name: "continuation"
+          in: "query"
+          schema:
+            type: string
+        - name: "size"
+          in: "query"
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          $ref: "#/components/responses/FlowAuctionsPage"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/ServerError"
+
+  "/v0.1/auctions/byItem":
+    get:
+      tags:
+        - "flow-auction-controller"
+      operationId: "getAuctionsByItem"
+      description: "Returns all auctions by item"
+      parameters:
+        - name: contract
+          in: "query"
+          required: true
+          schema:
+            type: string
+        - name: tokenId
+          in: "query"
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: seller
+          in: "query"
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: sort
+          in: "query"
+          schema:
+            $ref: "#/components/schemas/FlowAuctionSort"
+        - name: status
+          in: "query"
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/FlowAuctionStatus"
+        - name: currencyId
+          in: "query"
+          schema:
+            type: string
+            example: "A.7e60df042a9c0868.FlowToken"
+        - name: continuation
+          in: "query"
+          schema:
+            type: string
+        - name: "size"
+          in: "query"
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          $ref: "#/components/responses/FlowAuctionsPage"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/ServerError"
+  "/v0.1/auctions/byCollection":
+    get:
+      tags:
+        - "flow-auction-controller"
+      operationId: "getAuctionsByCollection"
+      description: "Returns all auctions by collection"
+      parameters:
+        - name: "contract"
+          in: "query"
+          required: true
+          schema:
+            type: string
+        - name: "seller"
+          in: "query"
+          schema:
+            $ref: "#/components/schemas/FlowAddress"
+        - name: "status"
+          in: "query"
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/FlowAuctionStatus"
+        - name: "continuation"
+          in: "query"
+          schema:
+            type: string
+        - name: "size"
+          in: "query"
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          $ref: "#/components/responses/FlowAuctionsPage"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/ServerError"
+
 components:
   responses:
     FlowOrdersPage:
@@ -671,4 +886,15 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/FlowOrdersPagination"
-
+    FlowAuctionBidsPage:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/FlowAuctionBidsPagination"
+    FlowAuctionsPage:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/FlowAuctionsPagination"

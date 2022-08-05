@@ -426,7 +426,7 @@ paths:
             $ref: "#/components/schemas/FlowAddress"
         - name: status
           in: query
-          required: true
+          required: false
           schema:
             type: array
             items:

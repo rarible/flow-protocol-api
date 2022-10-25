@@ -20,7 +20,7 @@ class DefaultFlowWebClientCustomizer : WebClientCustomizer {
             clientCodecConfigurer.defaultCodecs().maxInMemorySize(DEFAULT_MAX_BODY_SIZE)
         }
         val provider = ConnectionProvider.builder("protocol-default-connection-provider")
-            .maxConnections(200)
+            .maxConnections(500)
             .pendingAcquireMaxCount(-1)
             .maxIdleTime(DEFAULT_TIMEOUT)
             .maxLifeTime(DEFAULT_TIMEOUT)

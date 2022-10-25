@@ -49,7 +49,7 @@ class FlowNftIndexerApiClientAutoConfigurationIt {
     @Test
     fun `test default client uri`() {
         val uri = nftIndexerApiServiceUriProvider.getUri()
-        assertThat(uri.toString()).isEqualTo("http://test-flow-indexer-backend-api:8080")
+        assertThat(uri.toString()).isEqualTo("http://flow-indexer-backend-api.test-flow:8080")
     }
 
     @TestConfiguration

@@ -5,9 +5,9 @@ import com.rarible.protocol.flow.nft.api.client.CompositeWebClientCustomizer
 import com.rarible.protocol.flow.nft.api.client.DefaultFlowWebClientCustomizer
 import com.rarible.protocol.flow.nft.api.client.FlowApiServiceUriProvider
 import com.rarible.protocol.flow.nft.api.client.FlowNftIndexerApiClientFactory
+import com.rarible.protocol.flow.nft.api.client.K8FlowNftIndexerApiServiceUriProvider
 import com.rarible.protocol.flow.nft.api.client.NoopWebClientCustomizer
 import com.rarible.protocol.flow.nft.api.client.SwarmFlowNftIndexerApiServiceUriProvider
-import com.rarible.protocol.flow.nft.api.client.K8FlowNftIndexerApiServiceUriProvider
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
@@ -27,7 +27,9 @@ class FlowNftIndexerApiClientAutoConfiguration(
 
     @Bean
     @ConditionalOnMissingBean(FlowApiServiceUriProvider::class)
-    fun flowNftIndexerApiServiceUriProvider(@Value("\${rarible.core.client.k8s:false}") k8s: Boolean): FlowApiServiceUriProvider {
+    fun flowNftIndexerApiServiceUriProvider(
+        @Value("\${rarible.core.client.k8s:true}") k8s: Boolean
+    ): FlowApiServiceUriProvider {
         return if (k8s) {
             K8FlowNftIndexerApiServiceUriProvider(applicationEnvironmentInfo.name)
         } else {

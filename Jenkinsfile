@@ -1,6 +1,6 @@
-@Library('shared-library@stable') _
+@Library('shared-library') _
 
-buildLibrary([
-        "credentialsId": "nexus-ext-ci",
+pipelinePackageRelease([
+        "nexusCredentialsId": "nexus-ext-ci",
         "slackChannel": "flow-build"
 ])

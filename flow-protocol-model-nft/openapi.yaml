@@ -162,15 +162,19 @@ components:
           description: "NFT content information"
           items:
             $ref: "#/components/schemas/FlowMetaContentItem"
-        contents:
-          deprecated: true
-          type: "array"
-          items:
-            type: "string"
         originalMetaUri:
           type: string
         raw:
           $ref: "#/components/schemas/Binary"
+        status:
+          type: string
+          enum:
+            - OK
+            - NOT_FOUND
+            - TIMEOUT
+            - CORRUPTED_URL
+            - CORRUPTED_DATA
+            - ERROR
       required:
         - "name"
 

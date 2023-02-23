@@ -115,21 +115,6 @@ components:
           items: 
             $ref: "#/components/schemas/PayInfo"
 
-    FlowAggregationData:
-      type: object
-      required:
-        - address
-        - sum
-        - count
-      properties:
-        address:
-          $ref: "#/components/schemas/FlowAddress"
-        sum:
-          $ref: "#/components/schemas/BigDecimal"
-        count:
-          type: integer
-          format: int64
-
     FlowOrdersPagination:
       type: object
       required:

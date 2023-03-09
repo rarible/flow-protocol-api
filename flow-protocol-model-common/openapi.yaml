@@ -121,6 +121,8 @@ components:
           type: string
           format: date-time
           description: "Date of activity update in DB"
+        reverted:
+          type: boolean
       oneOf:
         - $ref: "#/components/schemas/FlowNftActivity"
         - $ref: "#/components/schemas/FlowNftOrderActivity"

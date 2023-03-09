@@ -82,6 +82,8 @@ components:
           type: string
         orderId:
           type: string
+        eventTimeMarks:
+          $ref: "#/components/schemas/FlowEventTimeMarks"
       oneOf:
         - $ref: "#/components/schemas/FlowOrderUpdateEvent"
 
@@ -112,21 +114,6 @@ components:
           type: array
           items: 
             $ref: "#/components/schemas/PayInfo"
-
-    FlowAggregationData:
-      type: object
-      required:
-        - address
-        - sum
-        - count
-      properties:
-        address:
-          $ref: "#/components/schemas/FlowAddress"
-        sum:
-          $ref: "#/components/schemas/BigDecimal"
-        count:
-          type: integer
-          format: int64
 
     FlowOrdersPagination:
       type: object

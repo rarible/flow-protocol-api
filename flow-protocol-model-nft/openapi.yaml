@@ -162,15 +162,19 @@ components:
           description: "NFT content information"
           items:
             $ref: "#/components/schemas/FlowMetaContentItem"
-        contents:
-          deprecated: true
-          type: "array"
-          items:
-            type: "string"
         originalMetaUri:
           type: string
         raw:
           $ref: "#/components/schemas/Binary"
+        status:
+          type: string
+          enum:
+            - OK
+            - NOT_FOUND
+            - TIMEOUT
+            - CORRUPTED_URL
+            - CORRUPTED_DATA
+            - ERROR
       required:
         - "name"
 
@@ -258,6 +262,8 @@ components:
           type: string
         itemId:
           type: string
+        eventTimeMarks:
+          $ref: "#/components/schemas/FlowEventTimeMarks"
       oneOf:
         - $ref: "#/components/schemas/FlowNftItemUpdateEvent"
         - $ref: "#/components/schemas/FlowNftItemDeleteEvent"
@@ -329,13 +335,8 @@ components:
     FlowNftItems:
       required:
         - items
-        - total
       type: object
       properties:
-        total:
-          type: integer
-          description: Number of items were found by request
-          format: int64
         continuation:
           type: string
           description: Continuation token to paginate items search result
@@ -354,6 +355,8 @@ components:
           type: string
         ownershipId:
           type: string
+        eventTimeMarks:
+          $ref: "#/components/schemas/FlowEventTimeMarks"
       oneOf:
         - $ref: "#/components/schemas/FlowNftOwnershipUpdateEvent"
         - $ref: "#/components/schemas/FlowNftOwnershipDeleteEvent"
@@ -442,13 +445,8 @@ components:
     FlowNftOwnerships:
       type: object
       required:
-        - total
         - ownerships
       properties:
-        total:
-          type: integer
-          description: Number of items were found by request
-          format: int64
         continuation:
           type: string
         ownerships:
@@ -459,13 +457,8 @@ components:
     FlowNftCollections:
       type: object
       required:
-        - total
         - data
       properties:
-        total:
-          type: integer
-          description: Number of items were found by request
-          format: int64
         continuation:
           type: string
         data:

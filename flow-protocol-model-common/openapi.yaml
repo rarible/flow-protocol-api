@@ -394,9 +394,6 @@ components:
       required:
         - items
       properties:
-        total:
-          type: integer
-          format: int32
         continuation:
           type: string
         items:
@@ -718,6 +715,33 @@ components:
         - RARIBLE
         - OTHER
 
+    FlowEventTimeMarks:
+      type: object
+      required:
+        - source
+        - marks
+      properties:
+        source:
+          type: string
+          description: "Describes what was the trigger of the event"
+        marks:
+          type: array
+          default: [ ]
+          items:
+            $ref: "#/components/schemas/FlowEventTimeMark"
+
+    FlowEventTimeMark:
+      type: object
+      required:
+        - name
+        - date
+      properties:
+        name:
+          type: string
+          description: "Describes 'place' where event has been handled/received"
+        date:
+          type: string
+          format: date-time
 
   responses:
     BadRequest:

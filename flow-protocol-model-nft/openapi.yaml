@@ -415,6 +415,47 @@ components:
           type: string
           format: date-time
 
+    FlowCollectionEvent:
+      required:
+        - eventId
+        - collectionId
+      properties:
+        eventId:
+          type: string
+        ownershipId:
+          type: string
+        eventTimeMarks:
+          $ref: "#/components/schemas/FlowEventTimeMarks"
+      oneOf:
+        - $ref: "#/components/schemas/FlowCollectionUpdateEvent"
+        - $ref: "#/components/schemas/FlowCollectionDeleteEvent"
+
+    FlowCollectionUpdateEvent:
+      type: object
+      required:
+        - ownership
+        - "@type"
+      properties:
+        "@type":
+          type: string
+          enum:
+            - UPDATE
+        ownership:
+          $ref: "#/components/schemas/FlowNftCollection"
+
+    FlowCollectionDeleteEvent:
+      type: object
+      required:
+        - ownership
+        - "@type"
+      properties:
+        "@type":
+          type: string
+          enum:
+            - DELETE
+        ownership:
+          $ref: "#/components/schemas/FlowNftCollection"
+
     FlowNftCollection:
       type: object
       required:

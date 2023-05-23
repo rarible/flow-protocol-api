@@ -433,27 +433,27 @@ components:
     FlowCollectionUpdateEvent:
       type: object
       required:
-        - ownership
+        - collection
         - "@type"
       properties:
         "@type":
           type: string
           enum:
             - UPDATE
-        ownership:
+        collection:
           $ref: "#/components/schemas/FlowNftCollection"
 
     FlowCollectionDeleteEvent:
       type: object
       required:
-        - ownership
+        - collection
         - "@type"
       properties:
         "@type":
           type: string
           enum:
             - DELETE
-        ownership:
+        collection:
           $ref: "#/components/schemas/FlowNftCollection"
 
     FlowNftCollection:

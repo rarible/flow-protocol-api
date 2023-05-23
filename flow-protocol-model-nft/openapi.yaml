@@ -428,7 +428,6 @@ components:
           $ref: "#/components/schemas/FlowEventTimeMarks"
       oneOf:
         - $ref: "#/components/schemas/FlowCollectionUpdateEvent"
-        - $ref: "#/components/schemas/FlowCollectionDeleteEvent"
 
     FlowCollectionUpdateEvent:
       type: object
@@ -440,19 +439,6 @@ components:
           type: string
           enum:
             - UPDATE
-        collection:
-          $ref: "#/components/schemas/FlowNftCollection"
-
-    FlowCollectionDeleteEvent:
-      type: object
-      required:
-        - collection
-        - "@type"
-      properties:
-        "@type":
-          type: string
-          enum:
-            - DELETE
         collection:
           $ref: "#/components/schemas/FlowNftCollection"
 

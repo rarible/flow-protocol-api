@@ -103,6 +103,17 @@ components:
         message:
           type: string
 
+    FlowActivityEvent:
+      type: object
+      required:
+        - activity
+        - eventTimeMarks
+      properties:
+        activity:
+          $ref: "#/components/schemas/FlowActivity"
+        eventTimeMarks:
+          $ref: "#/components/schemas/FlowEventTimeMarks"
+
     FlowActivity:
       type: object
       required:

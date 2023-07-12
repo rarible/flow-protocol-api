@@ -34,7 +34,7 @@
     </distributionManagement>
 
     <properties>
-        <revision>1.54.0</revision>
+        <revision>1.54.1</revision>
         <generator.kotlin>kotlin</generator.kotlin>
         <generator.package>com.rarible.protocol.dto</generator.package>
 
@@ -92,11 +92,6 @@
             <dependency>
                 <groupId>com.rarible.protocol.flow</groupId>
                 <artifactId>flow-protocol-api-nft-order</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rarible.protocol.flow</groupId>
-                <artifactId>flow-protocol-subscriber-nft</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -181,8 +176,6 @@
         <module>flow-protocol-api-nft-order</module>
         <module>flow-protocol-client-nft</module>
         <module>flow-protocol-client-nft-starter</module>
-        <module>flow-protocol-subscriber-nft</module>
-        <module>flow-protocol-subscriber-nft-starter</module>
         <module>flow-api</module>
     </modules>
 </project>

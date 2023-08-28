@@ -2,5 +2,6 @@
 
 pipelinePackageRelease([
         "nexusCredentialsId": "nexus-ext-ci",
+        "pkgRepoName": "nexus-ext",
         "slackChannel": "flow-build"
 ])

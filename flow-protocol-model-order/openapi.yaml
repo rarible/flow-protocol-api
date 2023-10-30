@@ -26,8 +26,7 @@ components:
         - makeStock
       properties:
         id:
-          type: integer
-          format: int64
+          type: string
         itemId:
           type: string
         collection:
@@ -144,8 +143,7 @@ components:
         ids:
           type: array
           items:
-            type: integer
-            format: int64
+            type: string
 
     FlowAuction:
       type: object

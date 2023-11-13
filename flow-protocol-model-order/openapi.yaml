@@ -26,7 +26,8 @@ components:
         - makeStock
       properties:
         id:
-          type: string
+          type: integer
+          format: int64
         itemId:
           type: string
         collection:

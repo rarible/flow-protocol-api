@@ -503,3 +503,9 @@ components:
           description: "List of the item id"
           items:
             type: string
+
+    FlowSignatureAlgorithm:
+      type: string
+      enum:
+        - ECDSA_P256
+        - ECDSA_secp56k1

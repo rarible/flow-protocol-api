@@ -546,7 +546,7 @@ paths:
           in: query
           required: false
           schema:
-            "$ref": "#/components/schemas/FlowSignatureAlgorithm"
+            type: string
       responses:
         '200':
           description: OK

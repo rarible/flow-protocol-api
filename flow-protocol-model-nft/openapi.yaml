@@ -294,6 +294,28 @@ components:
         item:
           $ref: "#/components/schemas/FlowNftDeletedItem"
 
+    FlowNftItemMetaEvent:
+      required:
+        - eventId
+        - itemId
+      properties:
+        eventId:
+          type: string
+        itemId:
+          type: string
+        eventTimeMarks:
+          $ref: "#/components/schemas/FlowEventTimeMarks"
+      oneOf:
+        - $ref: "#/components/schemas/FlowNftItemMetaRefreshEvent"
+
+    FlowNftItemMetaRefreshEvent:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - META_REFRESH
+
     FlowNftDeletedItem:
       required:
         - id

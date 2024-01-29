@@ -36,6 +36,10 @@ open class FlowNftIndexerApiClientFactory(
         return FlowNftCryptoControllerApi(createApiClient())
     }
 
+    fun createBlockApiClient(): FlowBlockControllerApi {
+        return FlowBlockControllerApi(createApiClient())
+    }
+
     private fun createApiClient(): ApiClient {
         return ApiClient(webClientCustomizer)
             .setBasePath(uriProvider.getUri().toASCIIString())

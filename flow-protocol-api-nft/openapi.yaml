@@ -566,3 +566,21 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/FlowApiError"
+
+  "/v0.1/blocks/latest-indexed":
+    get:
+      tags:
+        - flow-block-controller
+      description: Get latest indexed block
+      operationId: getLatestIndexedBlock
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LatestIndexedBlock"
+        '404':
+          $ref: "#/components/responses/EntityNotFound"
+        '500':
+          $ref: "#/components/responses/ServerError"

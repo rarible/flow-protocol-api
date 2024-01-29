@@ -754,6 +754,15 @@ components:
           type: string
           format: date-time
 
+    LatestIndexedBlock:
+      type: object
+      required:
+        - blockNumber
+      properties:
+        blockNumber:
+          type: integer
+          format: int64
+
   responses:
     BadRequest:
       description: Bad Request

@@ -314,6 +314,10 @@ paths:
         - flow-order-controller
       operationId: getOrdersSync
       parameters:
+        - name: type
+          in: query
+          schema:
+            $ref: "#/components/schemas/FlowOrderSyncType"
         - name: continuation
           description: "Continuation token to paginate items search result"
           in: query

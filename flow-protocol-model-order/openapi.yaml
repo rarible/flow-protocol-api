@@ -278,3 +278,10 @@ components:
           items:
             type: integer
             format: int64
+
+    FlowOrderSyncType:
+      type: string
+      enum:
+        - BUY
+        - SELL
+        - COLLECTION_BUY

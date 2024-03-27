@@ -34,7 +34,7 @@
     </distributionManagement>
 
     <properties>
-        <revision>1.84.0</revision>
+        <revision>1.84.100</revision>
         <generator.kotlin>kotlin</generator.kotlin>
         <generator.package>com.rarible.protocol.dto</generator.package>
 
@@ -46,7 +46,7 @@
         <rarible.codegen.client.version>1.4.0</rarible.codegen.client.version>
         <rarible.codegen.model.version>1.6.1</rarible.codegen.model.version>
 
-        <version.rarible.core>2.6.10</version.rarible.core>
+        <version.rarible.core>2.7.1</version.rarible.core>
     </properties>
 
     <dependencyManagement>

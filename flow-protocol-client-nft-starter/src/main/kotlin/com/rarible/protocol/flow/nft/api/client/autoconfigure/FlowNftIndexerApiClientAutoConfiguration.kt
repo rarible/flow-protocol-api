@@ -28,10 +28,13 @@ class FlowNftIndexerApiClientAutoConfiguration(
     @Bean
     @ConditionalOnMissingBean(FlowApiServiceUriProvider::class)
     fun flowNftIndexerApiServiceUriProvider(
-        @Value("\${rarible.core.client.k8s:true}") k8s: Boolean
+        @Value("\${rarible.core.client.k8s:true}") k8s: Boolean,
+        @Value("\${flow.indexer.client.k8sNamespace:}") configuredK8Namespace: String,
     ): FlowApiServiceUriProvider {
         return if (k8s) {
-            K8FlowNftIndexerApiServiceUriProvider(applicationEnvironmentInfo.name)
+            val k8sNamespace = configuredK8Namespace.takeIf(String::isNotEmpty)
+                ?: "${applicationEnvironmentInfo.name}-protocol"
+            K8FlowNftIndexerApiServiceUriProvider("", k8sNamespace)
         } else {
             SwarmFlowNftIndexerApiServiceUriProvider(applicationEnvironmentInfo.name)
         }

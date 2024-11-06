@@ -17,11 +17,13 @@ import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.boot.web.reactive.function.client.WebClientCustomizer
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Import
+import org.springframework.test.context.TestPropertySource
 
 @SpringBootTest
 @SpringBootConfiguration
 @EnableAutoConfiguration
 @Import(FlowNftIndexerApiClientAutoConfigurationIt.Configuration::class)
+@TestPropertySource(properties = ["flow.indexer.client.k8sNamespace=testnet-protocol"])
 class FlowNftIndexerApiClientAutoConfigurationIt {
 
     @Autowired
@@ -49,7 +51,7 @@ class FlowNftIndexerApiClientAutoConfigurationIt {
     @Test
     fun `test default client uri`() {
         val uri = nftIndexerApiServiceUriProvider.getUri()
-        assertThat(uri.toString()).isEqualTo("http://flow-indexer-api.test-protocol:8080")
+        assertThat(uri.toString()).isEqualTo("http://flow-indexer-api.testnet-protocol:8080")
     }
 
     @TestConfiguration
@@ -63,7 +65,7 @@ class FlowNftIndexerApiClientAutoConfigurationIt {
 
         @Bean
         fun applicationEnvironmentInfo(): ApplicationEnvironmentInfo {
-            return ApplicationEnvironmentInfo("test", "test.com")
+            return ApplicationEnvironmentInfo("staging", "test.com")
         }
     }
 }
